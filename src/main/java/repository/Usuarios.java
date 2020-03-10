@@ -1,6 +1,7 @@
 package repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -18,7 +19,7 @@ public class Usuarios implements Serializable{
 	
 	public Usuario usuarioPorNome(String nome_usuario) {
 		TypedQuery<Usuario> query = (TypedQuery<Usuario>) manager.createQuery(
-				"FROM usuario U WHERE U.nome_usuario = " + nome_usuario);
+				"FROM Usuario U WHERE U.nome_usuario = " + "'" + nome_usuario + "'");
 		return query.getSingleResult();
 	}
 
