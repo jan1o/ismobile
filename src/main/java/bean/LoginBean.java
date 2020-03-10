@@ -14,13 +14,12 @@ import util.JpaUtil;
 @ViewScoped
 public class LoginBean {
 
-	
 	private Usuario usuario = null;
-	
+
 	private String nome;
 	private String senha;
 
-	public void envia() {
+	public String envia() {
 		EntityManager manager = JpaUtil.getEntityManager();
 		Usuarios usuarioDAO = new Usuarios(manager);
 		usuario = usuarioDAO.usuarioPorNome(this.nome);
@@ -28,12 +27,18 @@ public class LoginBean {
 			usuario = new Usuario();
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
-		
-		} else if(usuario != null && usuario.getSenha_usuario().equals(this.senha)) {
-			System.out.println("Logado");
-		}
-		
 
+		} else if (usuario != null && usuario.getSenha_usuario().equals(this.senha)) {
+			System.out.println("Logado");
+			return "/logado?faces-redirect=true";
+		}
+		return null;
+
+	}
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/Login?faces-redirect=true";
 	}
 
 	public String getNome() {
