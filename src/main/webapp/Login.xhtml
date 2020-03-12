@@ -8,12 +8,12 @@
 </h:head>
 
 <h:body>
-	<div id="login-dialog">
+	<div id="login-dialog" class="ui-fluid" align="center">
 		<h:graphicImage library="intech" name="logo.png" />
 		<h1>Login</h1>
 		<h:form>
 			<p:messages id="messages" />
-			<h:panelGrid columns="2" styleClass="grid-login">
+			<h:panelGrid columns="2" styleClass="grid-login" columnClasses="ui-g-12 ui-md-1,ui-g-12 ui-md-2," layout="grid">
 				<p:outputLabel for="nomeUsuario" value="Usuário:" />
 				<p:inputText id="nomeUsuario" size="20" value="#{loginBean.nome}" />
 

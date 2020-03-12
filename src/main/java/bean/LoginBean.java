@@ -30,7 +30,7 @@ public class LoginBean {
 
 		} else if (usuario != null && usuario.getSenha_usuario().equals(this.senha)) {
 			System.out.println("Logado");
-			return "/logado?faces-redirect=true";
+			return "/Principal?faces-redirect=true";
 		}
 		return null;
 
