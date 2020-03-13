@@ -50,13 +50,14 @@ public class PedidoDAO {
                   listarSql += "GROUP BY p.numero, p.numero_pedido_pda, p.codigo_cliente, c.nome, " +
                                "         p.codigo_vendedor, v.nome, p.codigo_plano_pagto, pp.nome, p.data, " +
                                "         ip.numero_pedido, ip.codigo_produto, pr.descricao, ip.valor " +
-                               "ORDER BY p.numero, ip.numero_pedido, pr.descricao "; 
-                    
+                               "ORDER BY p.numero, ip.numero_pedido, pr.descricao ";  
                 PreparedStatement listarStatement = con.prepareStatement(listarSql);
                 listarStatement.setInt(1, codigo);
                 if (idPedido > 0)
                     listarStatement.setInt(2, idPedido);
+        System.out.println("***** Teste 1 *****");
 		ResultSet rs = listarStatement.executeQuery();
+		System.out.println("***** Teste 2 *****");
                 
                 boolean EOF = rs.next();                
                 while (EOF == true) {
@@ -163,6 +164,7 @@ public class PedidoDAO {
 	}
    }
    */
+   
 	
 	
 }

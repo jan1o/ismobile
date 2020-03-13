@@ -1,6 +1,6 @@
 package bean;
 
-import java.io.Serializable;
+/*import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,3 +51,4 @@ public class PedidoBean implements Serializable {
 	}
 
 }
+*/
