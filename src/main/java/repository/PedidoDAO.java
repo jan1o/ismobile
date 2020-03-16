@@ -1,13 +1,17 @@
 package repository;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
+
+
 
 import biblioteca.Lista;
 import model.Configuracao;
@@ -42,7 +46,8 @@ public class PedidoDAO {
                                "        LEFT OUTER JOIN cliente c ON (p.codigo_cliente = c.codigo) " +
                                "        LEFT OUTER JOIN plano_pagamento pp ON (p.codigo_plano_pagto = pp.codigo) " +
                                "        LEFT OUTER JOIN vendedor v ON (p.codigo_vendedor = v.codigo) " +
-                               "WHERE p.codigo_vendedor = ? ";
+                               "WHERE p.codigo_vendedor = ? AND" +
+            				   "      ip.numero_pedido IS NOT NULL ";
                                if (idPedido > 0)
                                    listarSql += " AND p.numero = ? ";
                                else
@@ -51,16 +56,21 @@ public class PedidoDAO {
                                "         p.codigo_vendedor, v.nome, p.codigo_plano_pagto, pp.nome, p.data, " +
                                "         ip.numero_pedido, ip.codigo_produto, pr.descricao, ip.valor " +
                                "ORDER BY p.numero, ip.numero_pedido, pr.descricao ";  
+    
                 PreparedStatement listarStatement = con.prepareStatement(listarSql);
+                //PreparedStatement listarStatement = con.prepareStatement(listarSql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                //Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                //PreparedStatement listarStatement = statement.
+
                 listarStatement.setInt(1, codigo);
                 if (idPedido > 0)
                     listarStatement.setInt(2, idPedido);
-        System.out.println("***** Teste 1 *****");
-		ResultSet rs = listarStatement.executeQuery();
-		System.out.println("***** Teste 2 *****");
+
+                ResultSet rs = listarStatement.executeQuery();	
                 
-                boolean EOF = rs.next();                
-                while (EOF == true) {
+                boolean EOF = rs.next();  
+ 
+                while (EOF == true) {            
                     Pedido pedido = new Pedido();
                     pedido.setNumero(rs.getInt(1));
                     pedido.setNumeroPedidoPDA(rs.getInt(2));
@@ -71,6 +81,7 @@ public class PedidoDAO {
                     pedido.getCondicaoPagamento().setCodigo(rs.getInt(7));
                     pedido.getCondicaoPagamento().setNome(rs.getString(8));
                     pedido.setData(rs.getDate(9));
+                   
                     while ((EOF == true) && (pedido.getNumero() == rs.getInt(10))){
                         ItemPedido ip = new ItemPedido();
                         ip.getProduto().setCodigo(rs.getInt(11));
@@ -81,7 +92,10 @@ public class PedidoDAO {
                         pedido.getLista().add(ip);                       
                         EOF = rs.next();
                     }
+                  
                     lista.add(pedido);
+                    //EOF = rs.next();
+                    
 		} 
 		
 		rs.close();
