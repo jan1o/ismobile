@@ -1,54 +1,68 @@
 package bean;
 
-/*import java.io.Serializable;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-import Testes.PedidoTeste;
+import model.ItemPedido;
+import model.Pedido;
+import repository.PedidoDAO;
+import util.Utilitarios;
 
 @ManagedBean
 @ViewScoped
 public class PedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private List<PedidoTeste> pedidos;
-	private PedidoTeste pedido = null;
-	private PedidoTeste pedido2 = null;
+	private List<Pedido> pedidos;
 
-	public void teste() {
-		System.out.println("**************PEDIDO CRIADO**************");
+	private Utilitarios util = new Utilitarios();
+	private PedidoDAO pedidoDao;
+	
+
+	
+
+	public void listaPedido() throws Exception {
 		
-		pedido = new PedidoTeste("150", "teste", "15/02/2020", "150");
-		pedido2 = new PedidoTeste("1", "teste2", "teste", "teste");
+		pedidoDao = new PedidoDAO(util.configuracaoPostgres());
 		
-		pedidos = new ArrayList<PedidoTeste>();
-		this.pedidos.add(pedido);
-		this.pedidos.add(pedido2);
-		System.out.println(pedidos.get(0).getId());
+
+		pedidos =  (List<Pedido>) pedidoDao.getListaPedidos(3, 0);
+		
+			
 	}
 	
+
 	public void excluir() {
 		System.out.println("excluiu!!");
 	}
 
-	public List<PedidoTeste> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public PedidoTeste getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(PedidoTeste pedido) {
-		this.pedido = pedido;
-	}
-
-	public void setPedidos(List<PedidoTeste> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 
+	public Utilitarios getUtil() {
+		return util;
+	}
+
+	public void setUtil(Utilitarios util) {
+		this.util = util;
+	}
+
+	public PedidoDAO getPedidoDao() {
+		return pedidoDao;
+	}
+
+	public void setPedidoDao(PedidoDAO pedidoDao) {
+		this.pedidoDao = pedidoDao;
+	}
+
 }
-*/

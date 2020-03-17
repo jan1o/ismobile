@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<f:metadata>
-		<f:viewAction action="#{pedidoBean.teste}" />
+		<f:viewAction action="#{pedidoBean.listaPedido}" />
 	</f:metadata>
 	<ui:define name="titulo">Consulta de Pedidos</ui:define>
 	<ui:define name="corpo">
@@ -21,27 +21,34 @@
 						paginatorPosition="bottom">>
 				<p:column>
 							<f:facet name="header">
-								<h:outputText value="Código" />
+								<h:outputText value="Número" converter="javax.faces.Integer" />
 							</f:facet>
-							<h:outputText value="#{pedido.id}" />
+							<h:outputText value="#{pedido.numero}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Descrição" />
-							</f:facet>
-							<h:outputText value="#{pedido.descricao}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="data" />
+								<h:outputText value="Data" />
 							</f:facet>
 							<h:outputText value="#{pedido.data}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Valor" />
+								<h:outputText value="Cliente" />
 							</f:facet>
-							<h:outputText value="#{pedido.valor}" />
+							<h:outputText value="#{pedido.cliente.nome}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Vendedor" />
+							</f:facet>
+							<h:outputText value="#{pedido.vendedor.nome}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Condição do Pagamento" />
+							</f:facet>
+							<h:outputText value="#{pedido.condicaoPagamento.nome}" />
 						</p:column>
 
 						<p:column>
