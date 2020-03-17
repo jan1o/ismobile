@@ -10,13 +10,13 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
-
-
+import java.util.Iterator;
 
 import biblioteca.Lista;
 import model.Configuracao;
 import model.ItemPedido;
 import model.Pedido;
+import model.PedidoPda;
 
 public class PedidoDAO {
 	
@@ -108,8 +108,8 @@ public class PedidoDAO {
 	return lista;
     }
 	
-	/*
-	public void InserirPedido(Pedido pedido) throws SQLException {
+	
+	public void InserirPedido(PedidoPda pedido) throws SQLException {
 	       
         try {
             String insertSqlPedido = "INSERT " +
@@ -177,7 +177,7 @@ public class PedidoDAO {
             System.out.println("Erro: " + e.toString());
 	}
    }
-   */
+   
    
 	
 	

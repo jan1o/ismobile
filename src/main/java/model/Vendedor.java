@@ -10,6 +10,7 @@ public class Vendedor {
     
     private int codigo;
     private String nome;
+    private int numeroPedido;
     private Supervisor supervisor;
     private double flex;
     private double saldoFlex;
@@ -58,5 +59,13 @@ public class Vendedor {
     public void setSaldoFlex(double saldoFlex){
         this.saldoFlex = saldoFlex;
     }
+
+	public int getNumeroPedido() {
+		return numeroPedido;
+	}
+
+	public void setNumeroPedido(int numeroPedido) {
+		this.numeroPedido = numeroPedido;
+	}
     
 }
