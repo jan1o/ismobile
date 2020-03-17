@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import model.ItemPedido;
@@ -19,6 +20,8 @@ public class PedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Pedido> pedidos;
+	private List<ItemPedido> itemPedidos;
+	private Pedido pedidoSelecionado = new Pedido();
 
 	private Utilitarios util = new Utilitarios();
 	private PedidoDAO pedidoDao;
@@ -29,11 +32,17 @@ public class PedidoBean implements Serializable {
 	public void listaPedido() throws Exception {
 		
 		pedidoDao = new PedidoDAO(util.configuracaoPostgres());
-		
+	
 
 		pedidos =  (List<Pedido>) pedidoDao.getListaPedidos(3, 0);
 		
-			
+	}
+	
+	public void listaItemPedido() {
+		System.out.println("teste");
+		this.itemPedidos = (List<ItemPedido>) pedidoSelecionado.getLista();
+		
+		//System.out.println("teste" + itemPedidos.get(0).getQuantidade());
 	}
 	
 
@@ -63,6 +72,24 @@ public class PedidoBean implements Serializable {
 
 	public void setPedidoDao(PedidoDAO pedidoDao) {
 		this.pedidoDao = pedidoDao;
+	}
+	public List<ItemPedido> getItemPedidos() {
+		return itemPedidos;
+	}
+
+
+	public void setItemPedidos(List<ItemPedido> itemPedidos) {
+		this.itemPedidos = itemPedidos;
+	}
+
+
+	public Pedido getPedidoSelecionado() {
+		return pedidoSelecionado;
+	}
+
+
+	public void setPedidoSelecionado(Pedido pedidoSelecionado) {
+		this.pedidoSelecionado = pedidoSelecionado;
 	}
 
 }
