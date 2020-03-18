@@ -32,7 +32,7 @@ public class Utilitarios {
 	//Método para adicionar as configuracoes do Postgres 
 	public Configuracao configuracaoPostgres() {
 		Configuracao config = new Configuracao();
-		config.setCaminhoDB("jdbc:postgresql://localhost:5433/INSEALI");
+		config.setCaminhoDB("jdbc:postgresql://localhost/INSEALI");
 		config.setDriverDB("org.postgresql.Driver");
 		config.setLoginDB("postgres");
 		config.setSenhaDB("123");

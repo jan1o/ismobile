@@ -14,8 +14,17 @@ public class Vendedor {
     private Supervisor supervisor;
     private double flex;
     private double saldoFlex;
+    private int sequencia_pedido_pda;
     
-    /** Creates a new instance of Vendedor */
+    public int getSequencia_pedido_pda() {
+		return sequencia_pedido_pda;
+	}
+
+	public void setSequencia_pedido_pda(int sequencia_pedido_pda) {
+		this.sequencia_pedido_pda = sequencia_pedido_pda;
+	}
+
+	/** Creates a new instance of Vendedor */
     public Vendedor() {
         supervisor = new Supervisor();
     }
