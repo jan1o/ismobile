@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import model.Usuario;
 import repository.Usuarios;
+import sessao.SessionContext;
 import util.JpaUtil;
 
 @ManagedBean
@@ -19,6 +20,10 @@ public class LoginBean {
 	private String nome;
 	private String senha;
 	
+	 public Usuario getUser() {
+	       return (Usuario) SessionContext.getInstance().getUsuarioLogado();
+	    }
+	 
 	public String envia() {
 		EntityManager manager = JpaUtil.getEntityManager();
 		Usuarios usuarioDAO = new Usuarios(manager);
@@ -30,7 +35,7 @@ public class LoginBean {
 
 		} else if (usuario != null && usuario.getSenha_usuario().equals(this.senha)) {
 			System.out.println("Logado");
-			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("usuario", usuario);
+			SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
 			return "/Principal?faces-redirect=true";
 		}
 		return null;
@@ -38,7 +43,7 @@ public class LoginBean {
 	}
 
 	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		SessionContext.getInstance().encerrarSessao();
 		return "/Login?faces-redirect=true";
 	}
 

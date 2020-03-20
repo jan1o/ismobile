@@ -107,78 +107,7 @@ public class PedidoDAO {
 	Collections.sort(lista);
 	return lista;
     }
-	
-	
-	public void InserirPedido(PedidoPda pedido) throws SQLException {
-	       
-        try {
-            String insertSqlPedido = "INSERT " +
-                                     "INTO pedido_pda(numero, data, codigo_cliente, codigo_vendedor, codigo_plano_pagamento, " +
-                                     " frios, retirado, observacao, negociacao, latitude, longitude, inicio_atendimento, " +
-                                     " fim_atendimento, versao_app, consignado, tipo_dfe, qtd_pedidos_lote) " +
-                                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement insertStatement = con.prepareStatement(insertSqlPedido);
-            
-            insertStatement.setInt(1, pedido.getNumero());
-            
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat ("yyyy-MM-dd HH:mm:ss"); 
-            String datetext = sdf.format(pedido.getData());
-            insertStatement.setTimestamp(2, Timestamp.valueOf(datetext));
-            
-            insertStatement.setInt(3, pedido.getCliente().getCodigo());
-            insertStatement.setInt(4, pedido.getVendedor().getCodigo());
-            insertStatement.setInt(5, pedido.getCondicaoPagamento().getCodigo());
-            insertStatement.setInt(6, pedido.getFrios());
-            insertStatement.setInt(7, pedido.getRetirado());
-            insertStatement.setString(8, pedido.getObs());
-            insertStatement.setInt(9, pedido.getNegociacao());
-            insertStatement.setDouble(10, pedido.getLatitude());
-            insertStatement.setDouble(11, pedido.getLongitude());
-            insertStatement.setString(12, pedido.getInicioAtendimento());
-            insertStatement.setString(13, pedido.getFimAtendimento());
-            insertStatement.setString(14, pedido.getVersaoApp());
-            insertStatement.setInt(15, pedido.getConsignado());
-            insertStatement.setInt(16, pedido.getTipoDFe());
-            insertStatement.setInt(17, pedido.getQtdPedidoLote());
-            
-            insertStatement.executeUpdate();			
-            
-            String insertSqlItemPedido = "insert into item_pedido_pda(numero_pedido_pda, codigo_vendedor, codigo_produto, quantidade, valor) values(?, ?, ?, ?, ?)";
-            PreparedStatement insertStatementItem = con.prepareStatement(insertSqlItemPedido);
-	    	
-            Iterator it = pedido.getLista().iterator();
-            while (it.hasNext()){
-                ItemPedido ip = (ItemPedido)it.next();
-                insertStatementItem.setInt(1, pedido.getNumero());
-                insertStatementItem.setInt(2, pedido.getVendedor().getCodigo());
-                insertStatementItem.setInt(3, ip.getProduto().getCodigo());
-                insertStatementItem.setDouble(4, ip.getQuantidade());
-                insertStatementItem.setDouble(5, ip.getValor());
-                
-                insertStatementItem.executeUpdate();			
-            }
-            con.commit();
-            
-            insertStatement.close();
-            insertStatementItem.close();
-            
-             String update = "UPDATE pedido_pda SET ENVIADO = CURRENT_TIMESTAMP WHERE NUMERO = "+ pedido.getNumero() + " AND CODIGO_VENDEDOR = " + pedido.getVendedor().getCodigo();
-             PreparedStatement updateStatement = con.prepareStatement(update);
-             updateStatement.executeUpdate();
-             con.commit();
-             updateStatement.close();
-            pedido.setLogErro("");
-            //CallableStatement stat = con.prepareCall("{call processar_pedido_pda_pr}");
-            //stat.execute();
-            //con.commit();
-                       
-	}catch(Exception e){
-            pedido.setLogErro("Erro: " + e.toString());
-            System.out.println("Erro: " + e.toString());
-	}
-   }
-   
-   
+      
 	
 	
 }
