@@ -9,6 +9,11 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import biblioteca.Lista;
 import model.Configuracao;
@@ -18,8 +23,64 @@ import model.Pedido;
 import model.PedidoPda;
 
 public class PedidoPdaDAO {
-
-	Connection con = null;
+	
+	private EntityManager manager;
+	
+	public PedidoPdaDAO(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public List<PedidoPda> listarTodos(int idVendedor){
+		Query query = manager.createQuery("from PedidoPda p where p.codigo_vendedor = :id ");
+		query.setParameter("id", idVendedor);
+		List<PedidoPda> pedidos= query.getResultList();
+		
+		for(PedidoPda p : pedidos) {
+			Query tempQ = manager.createQuery(
+					"from ItemPedidoPda i where i.numero_pedido_pda = :num and i.codigo_vendedor = :ven ");
+			tempQ.setParameter("num", p.getNumero());
+			tempQ.setParameter("ven", p.getCodigo_vendedor());
+			p.setItens(tempQ.getResultList());
+		}
+		
+		return query.getResultList();
+	}
+	
+	public PedidoPda listarPorId(Integer numero) {
+		Query query = manager.createQuery("from PedidoPda p where p.numero = :id ");
+		query.setParameter("id", numero);
+		return (PedidoPda) query.getSingleResult();
+	}
+	
+	//Esse método serve tanto para inserir quanto para alterar os pedidoPda.
+	public PedidoPda guardar(PedidoPda pedido) {
+		manager.getTransaction().begin();
+		this.manager.merge(pedido);
+		manager.getTransaction().commit();
+		return pedido; 
+	}
+	
+	public void deletar(PedidoPda pedido) {
+		manager.getTransaction().begin();
+		manager.remove(pedido);
+		manager.getTransaction().commit();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//########## A partir daqui foi utilizado outro tipo de conexao com o banco que não o Hibernate #########
+	
+	/*Connection con = null;
 
 	public PedidoPdaDAO(Configuracao configuracao) throws Exception {
 		try {
@@ -51,7 +112,7 @@ public class PedidoPdaDAO {
 		
 	}
 	//Essa era funcao que eu adaptei, mas pablo disse q nao era assim. Me orgulho dela entao vou deixar aqui kkk
-	/*public Collection getListaPedidos(int codigo, int idPedido) throws SQLException {
+	public Collection getListaPedidos(int codigo, int idPedido) throws SQLException {
 		Lista lista = new Lista();
 		
 		try {

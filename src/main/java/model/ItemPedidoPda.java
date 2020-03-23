@@ -2,9 +2,17 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "item_pedido_pda")
 public class ItemPedidoPda implements Comparable, Serializable{
 	
 	/**
@@ -27,6 +35,7 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	private int quantidade; // numeric(18,4),
 	
 	private Double valor; // numeric(18,4),
+	
 	
 	public ItemPedidoPda() {
 		

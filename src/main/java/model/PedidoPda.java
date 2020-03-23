@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ public class PedidoPda implements Comparable, Serializable{
 	@NotNull
 	private int numero; //numeric(6,0) NOT NULL,
 	
+	@Column
 	private Date data; //date,
 	 
 	@NotNull
@@ -34,45 +36,62 @@ public class PedidoPda implements Comparable, Serializable{
 	private int codigo_vendedor; // numeric(6,0) NOT NULL,
 	
 	@NotNull
+	@Column
 	private int codigo_plano_pagamento; // numeric(3,0) NOT NULL,
 	
+	@Column
 	private int frios; // numeric(1,0),
-	  
+	
+	@Column
 	private int retirado; // numeric(1,0),
-	  
+	
+	@Column
 	private Date enviado; // date,
-	  
+	
+	@Column
 	private Date processado; // timestamp without time zone,
-	  
+	
+	@Column
 	private int numero_pedido; // numeric(10,0),
 	
+	@Column
 	@Size(max = 150)
 	private String observacao; // character varying(150),
-	  
+	
+	@Column
 	private int negociacao; // numeric(1,0) DEFAULT 0,
-	  
+	
+	@Column
 	private int latitude; // numeric,
-	  
+	
+	@Column
 	private int longitude; // numeric,
 	
+	@Column
 	@Size(max = 8)
 	private String inicio_atendimento; // character(8),
 	
+	@Column
 	@Size(max = 8)
 	private String fim_atendimento; // character(8),
 	
+	@Column
 	@Size(max = 30)
 	private String versao_app; // character varying(30),
-	  
-	private int consignado; // numeric(1,0) DEFAULT 0,
-	  
-	private int tipo_dfe; // numeric(1,0) DEFAULT 0,
-	  
-	private int qtd_pedidos_lote; // numeric(3,0),
-	  
-	private int numero_negociacao; // numeric(10,0),
 	
-	@OneToMany(mappedBy = "pedido_pda", targetEntity = ItemPedidoPda.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column
+	private int consignado; // numeric(1,0) DEFAULT 0,
+	
+	@Column
+	private int tipo_dfe; // numeric(1,0) DEFAULT 0,
+	
+	@Column
+	private int qtd_pedidos_lote; // numeric(3,0),
+	
+	@Column
+	private Integer numero_negociacao; // numeric(10,0),
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemPedidoPda> itens; 
     
     /** Creates a new instance of Pedido */
