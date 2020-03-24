@@ -36,28 +36,32 @@ public class PedidoPdaDAO {
 		List<PedidoPda> pedidos= query.getResultList();
 		
 		for(PedidoPda p : pedidos) {
-			Query tempQ = manager.createQuery(
-					"from ItemPedidoPda i where i.numero_pedido_pda = :num and i.codigo_vendedor = :ven ");
-			tempQ.setParameter("num", p.getNumero());
-			tempQ.setParameter("ven", p.getCodigo_vendedor());
-			p.setItens(tempQ.getResultList());
+			ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(manager);
+			p.setItens(dao.listarPorPedidoPda(p));
 		}
 		
 		return query.getResultList();
 	}
 	
-	public PedidoPda listarPorId(Integer numero) {
+	public PedidoPda listarPorId(PedidoPda pedido) {
 		Query query = manager.createQuery("from PedidoPda p where p.numero = :id ");
-		query.setParameter("id", numero);
-		return (PedidoPda) query.getSingleResult();
+		query.setParameter("id", pedido.getNumero());
+		PedidoPda p = (PedidoPda) query.getSingleResult();
+		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(manager);
+		p.setItens(dao.listarPorPedidoPda(pedido));
+		return p;
 	}
 	
+	public void inserir(PedidoPda pedido) {
+		manager.getTransaction().begin();
+		manager.merge(pedido);
+		manager.getTransaction().commit();
+	}
 	//Esse método serve tanto para inserir quanto para alterar os pedidoPda.
-	public PedidoPda guardar(PedidoPda pedido) {
+	public void alterar(PedidoPda pedido) {
 		manager.getTransaction().begin();
 		this.manager.merge(pedido);
 		manager.getTransaction().commit();
-		return pedido; 
 	}
 	
 	public void deletar(PedidoPda pedido) {
