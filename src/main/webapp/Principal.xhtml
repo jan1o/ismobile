@@ -49,24 +49,42 @@
 							<f:facet name="header">
 								<h:outputText value="Total" />
 							</f:facet>
-							<h:outputText value="#{Teste}" />
+							<h:outputText value="Teste" />
 						</p:column>
 
 						<p:column>
-
-							<!--  <p:commandButton icon="ui-icon-search" type="submit"
-								onclick="PF('dlg2').show();" process="@this" update="@none"
+						
+						                              <!-- Listar item pedidos -->
+							<p:commandButton icon="ui-icon-search" title="Ver"
+								process="@this" update="@none"
 								action="#{pedidoPdaBean.listaItemPedidoPda}">
 								<f:setPropertyActionListener value="#{pedidoPda}"
 									target="#{pedidoPdaBean.pedidoPdaSelecionado}" />
-							</p:commandButton> -->
-
-							<p:button icon="ui-icon-pencil" title="Editar" />
-
-							<p:commandButton icon="ui-icon-trash" title="Excluir"
-								process="@this" update="@form" action="#{pedidoPdaBean.excluir}">
 
 							</p:commandButton>
+							
+							                          <!-- Editar -->
+
+							<p:button icon="ui-icon-pencil" title="Editar" />
+							
+							                          <!-- Excluir -->
+
+
+							<p:commandButton icon="ui-icon-trash"
+								action="#{pedidoPdaBean.excluirItemPedidoPda}" update="@form">
+								<f:setPropertyActionListener value="#{pedidoPda}"
+									target="#{pedidoPdaBean.pedidoPdaSelecionado}" />
+								<p:confirm header="Confirmação" message="Quer mesmo excluir este pedido?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button" 
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+							</p:confirmDialog>
 						</p:column>
 					</p:dataTable>
 					<br />
@@ -74,7 +92,7 @@
 						action="/Login.xhtml" style="margin-right:20px;"
 						icon="ui-icon-plusthick" />
 				</div>
-				</h:form>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

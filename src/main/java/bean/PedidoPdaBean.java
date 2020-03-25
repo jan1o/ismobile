@@ -3,13 +3,18 @@ package bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.persistence.EntityManager;
+
+import org.primefaces.context.RequestContext;
 
 import model.ItemPedido;
 import model.ItemPedidoPda;
@@ -25,12 +30,11 @@ import util.Utilitarios;
 public class PedidoPdaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private PedidoPda pedidoPdaSelecionado = new PedidoPda();;
+	private PedidoPda pedidoPdaSelecionado = new PedidoPda();
 	private float total = 0; 
 
-
 	private List<PedidoPda> pedidosPda;
-	private List<ItemPedidoPda> itensPedidoPda; 
+	private List<ItemPedidoPda> itemPedidoPda;
 
 
 	
@@ -45,18 +49,27 @@ public class PedidoPdaBean implements Serializable {
 		manager.close();
 		
 	}
-
+	
 	public void listaItemPedidoPda() {
 		
-		itensPedidoPda = pedidoPdaSelecionado.getItens();
+		itemPedidoPda = pedidoPdaSelecionado.getItens();
+		Map<String, Object> opcoes = new HashMap<>();
+		opcoes.put("modal", true);
+		opcoes.put("resizable", false);
+		opcoes.put("contentHeight", 500);
 		
-	
+		RequestContext.getCurrentInstance().openDialog("itemPedidoPda", opcoes, null);
 	}
+
 	
 
-
-	public void excluir() {
-		System.out.println("excluiu!!");
+	public void excluirItemPedidoPda() {
+		
+		EntityManager manager2 = JpaUtil.getEntityManager();
+		PedidoPdaDAO pedidoPdaDao2 = new PedidoPdaDAO(manager2);
+		
+		pedidoPdaDao2.deletar(pedidoPdaSelecionado);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pedido excluido com sucesso", null));
 	}
 
 
@@ -83,13 +96,13 @@ public class PedidoPdaBean implements Serializable {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	
-	public List<ItemPedidoPda> getItensPedidoPda() {
-		return itensPedidoPda;
+	public List<ItemPedidoPda> getItemPedidoPda() {
+		return itemPedidoPda;
 	}
 
-	public void setItensPedidoPda(List<ItemPedidoPda> itensPedidoPda) {
-		this.itensPedidoPda = itensPedidoPda;
+	public void setItemPedidoPda(List<ItemPedidoPda> itemPedidoPda) {
+		this.itemPedidoPda = itemPedidoPda;
 	}
-
 }
+
+
