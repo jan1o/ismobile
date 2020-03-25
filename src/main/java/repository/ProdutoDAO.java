@@ -13,29 +13,29 @@ import model.Configuracao;
 import model.Produto;
 
 public class ProdutoDAO {
-	
-	Connection con = null;
-	
-	public ProdutoDAO(Configuracao configuracao) throws Exception{
-		try {
-            Class.forName(configuracao.getDriverDB());
-            con = DriverManager.getConnection(configuracao.getCaminhoDB(), configuracao.getLoginDB(), configuracao.getSenhaDB());
 
-        } catch (Exception ex) {
-            throw new Exception("Nao pode abrir conexao para o banco de dados: " +
-		ex.getMessage());
-        }
+	Connection con = null;
+
+	public ProdutoDAO(Configuracao configuracao) throws Exception {
+		try {
+			Class.forName(configuracao.getDriverDB());
+			con = DriverManager.getConnection(configuracao.getCaminhoDB(), configuracao.getLoginDB(),
+					configuracao.getSenhaDB());
+
+		} catch (Exception ex) {
+			throw new Exception("Nao pode abrir conexao para o banco de dados: " + ex.getMessage());
+		}
 	}
-	
+
 	public Collection getListaProduto(int codigo) throws SQLException {
 
 		Lista lista = new Lista();
 
 		try { // codigo_setor
-			// String listarSql = "SELECT CODIGO, DESCRICAO, SIGLA_UNIDADE, QUANTIDADE,
-			// VALOR, CODIGO_GRUPO, CODIGO_SUBGRUPO, CODIGO_FABRICANTE, QTD_EMBALAGEM,
-			// COMISSAO, CODIGO_tipo_produto FROM PRODUTO WHERE QUANTIDADE > 0"; // AND NOT
-			// DESCRICAO LIKE '%&%'";
+				// String listarSql = "SELECT CODIGO, DESCRICAO, SIGLA_UNIDADE, QUANTIDADE,
+				// VALOR, CODIGO_GRUPO, CODIGO_SUBGRUPO, CODIGO_FABRICANTE, QTD_EMBALAGEM,
+				// COMISSAO, CODIGO_tipo_produto FROM PRODUTO WHERE QUANTIDADE > 0"; // AND NOT
+				// DESCRICAO LIKE '%&%'";
 			String listarSql; // REPLACE(p.foto_web, '/', '\')
 			if (codigo > 0) {
 				listarSql = "SELECT p.codigo, p.descricao, p.sigla_unidade, p.quantidade, p.valor, "
@@ -143,5 +143,27 @@ public class ProdutoDAO {
 		}
 		Collections.sort(lista);
 		return lista;
+	}
+
+	// funcao para retornar o nome de um produto em vez do código
+	public String getNomeProduto(int codigo) throws SQLException {
+
+		String nome;
+		try {
+			String listarSql;
+			listarSql = "SELECT p.descricao " + "FROM produto p " + "WHERE p.codigo = ? ";
+
+			PreparedStatement listarStatement = con.prepareStatement(listarSql);
+
+			listarStatement.setInt(1, codigo);
+
+			ResultSet rs = listarStatement.executeQuery();
+
+			nome = rs.getString(1);
+
+		} catch (Exception e) {
+			throw new SQLException(e.getMessage());
+		}
+		return nome;
 	}
 }
