@@ -36,7 +36,9 @@ public class ItemPedidoPdaDAO {
 	public void deletarItensPedido(PedidoPda pedido) {
 		manager.getTransaction().begin();
 		for(ItemPedidoPda i : pedido.getItens()) {
-			manager.remove(i);
+			System.out.println(pedido.getItens().get(0).getCodigo_produto());
+			System.out.println(i.getCodigo_produto());
+			manager.remove(manager.contains(i) ? i : manager.merge(i));
 		}
 		manager.getTransaction().commit();
 	}

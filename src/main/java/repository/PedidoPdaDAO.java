@@ -21,6 +21,7 @@ import model.ItemPedido;
 import model.ItemPedidoPda;
 import model.Pedido;
 import model.PedidoPda;
+import util.JpaUtil;
 
 public class PedidoPdaDAO {
 	
@@ -30,6 +31,7 @@ public class PedidoPdaDAO {
 		this.manager = manager;
 	}
 	
+	//falta o ... AND processado = null
 	public List<PedidoPda> listarTodos(int idVendedor){
 		Query query = manager.createQuery("from PedidoPda p where p.codigo_vendedor = :id ");
 		query.setParameter("id", idVendedor);
@@ -56,18 +58,33 @@ public class PedidoPdaDAO {
 		manager.getTransaction().begin();
 		manager.merge(pedido);
 		manager.getTransaction().commit();
+		
+		EntityManager man = JpaUtil.getEntityManager();
+		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(man);
+		dao.inserirItens(pedido.getItens());
 	}
 	//Esse método serve tanto para inserir quanto para alterar os pedidoPda.
 	public void alterar(PedidoPda pedido) {
 		manager.getTransaction().begin();
 		this.manager.merge(pedido);
 		manager.getTransaction().commit();
+		
+		EntityManager man = JpaUtil.getEntityManager();
+		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(man);
+		dao.alterarItensPedido(pedido);
+		
 	}
 	
 	public void deletar(PedidoPda pedido) {
+		
+		
 		manager.getTransaction().begin();
-		manager.remove(pedido);
+		manager.remove(manager.contains(pedido) ? pedido : manager.merge(pedido));
 		manager.getTransaction().commit();
+		
+		EntityManager man = JpaUtil.getEntityManager();
+		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(man);
+		dao.deletarItensPedido(pedido);
 	}
 	
 	
