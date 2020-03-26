@@ -16,6 +16,7 @@
 			<h:form id="frm">
 				<div class="ui-fluid">
 					<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+					
 					<p:dataTable value="#{pedidoPdaBean.pedidosPda}" var="pedidoPda"
 						border="1" cellspacing="0" cellpadding="2" paginator="true"
 						rows="5" paginatorPosition="bottom">
@@ -80,7 +81,7 @@
 
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade">
-								<p:commandButton value="Sim" type="button" 
+								<p:commandButton value="Sim" update="@form" type="button" 
 									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 								<p:commandButton value="Não" type="button"
 									styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />

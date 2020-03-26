@@ -63,13 +63,18 @@ public class PedidoPdaBean implements Serializable {
 
 	
 
-	public void excluirItemPedidoPda() {
+	public void excluirItemPedidoPda() throws Exception {
 		
 		EntityManager manager2 = JpaUtil.getEntityManager();
 		PedidoPdaDAO pedidoPdaDao2 = new PedidoPdaDAO(manager2);
 		
 		pedidoPdaDao2.deletar(pedidoPdaSelecionado);
+		manager2.close();
+		
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pedido excluido com sucesso", null));
+		this.listaPedidoPda();
+		
+		
 	}
 
 
