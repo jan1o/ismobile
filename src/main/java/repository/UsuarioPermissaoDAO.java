@@ -58,6 +58,22 @@ public class UsuarioPermissaoDAO {
 		}
 		return v;
 	}
+	
+	public void updateSequenciaPedidoPda(Vendedor v) throws SQLException {
+		try {
+			String listarSql;
+			listarSql = "UPDATE vendedor SET sequencia_pedido_pda = sequencia_pedido_pda + 1 WHERE codigo = ? ";
+
+			PreparedStatement listarStatement = con.prepareStatement(listarSql);
+
+			listarStatement.setInt(1, v.getCodigo());
+
+			ResultSet rs = listarStatement.executeQuery();
+			
+		}  catch (Exception e) {
+			throw new SQLException(e.getMessage());
+		}
+	}
 
 }
 

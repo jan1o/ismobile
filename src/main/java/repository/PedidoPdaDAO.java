@@ -31,9 +31,13 @@ public class PedidoPdaDAO {
 		this.manager = manager;
 	}
 	
+	
+	
+	//########## codigo sem mapeamento completo no hibernate #########
+	
 	//falta o ... AND processado = null
 	public List<PedidoPda> listarTodos(int idVendedor){
-		Query query = manager.createQuery("from PedidoPda p where p.codigo_vendedor = :id ");
+		Query query = manager.createQuery("from PedidoPda p where p.codigo_vendedor = :id and p.processado is null");
 		query.setParameter("id", idVendedor);
 		List<PedidoPda> pedidos= query.getResultList();
 		
@@ -77,26 +81,55 @@ public class PedidoPdaDAO {
 	
 	public void deletar(PedidoPda pedido) {
 		
-		
-		manager.getTransaction().begin();
-		manager.remove(manager.contains(pedido) ? pedido : manager.merge(pedido));
-		manager.getTransaction().commit();
-		
 		EntityManager man = JpaUtil.getEntityManager();
 		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(man);
 		dao.deletarItensPedido(pedido);
+		
+		manager.getTransaction().begin();
+		manager.remove(manager.getReference(PedidoPda.class, pedido));
+		
+		manager.getTransaction().commit();
 	}
 	
+	//########## codigo com mapeamento completo no hibernate #########
+	/*
 	
+	public List<PedidoPda> listarTodos(int idVendedor){
+		Query query = manager.createQuery("from PedidoPda p where p.codigo_vendedor = :id ");
+		query.setParameter("id", idVendedor);
+		List<PedidoPda> pedidos= query.getResultList();
+		
+		return query.getResultList();
+	}
 	
+	public PedidoPda listarPorId(PedidoPda pedido) {
+		Query query = manager.createQuery("from PedidoPda p where p.numero = :id ");
+		query.setParameter("id", pedido.getNumero());
+		PedidoPda p = (PedidoPda) query.getSingleResult();
+		return p;
+	}
 	
+	public void inserir(PedidoPda pedido) {
+		manager.getTransaction().begin();
+		manager.merge(pedido);
+		manager.getTransaction().commit();
+		
+	}
+	//Esse método serve tanto para inserir quanto para alterar os pedidoPda.
+	public void alterar(PedidoPda pedido) {
+		manager.getTransaction().begin();
+		this.manager.merge(pedido);
+		manager.getTransaction().commit();
+		
+	}
 	
-	
-	
-	
-	
-	
-	
+	public void deletar(PedidoPda pedido) {
+		
+		manager.getTransaction().begin();
+		manager.remove(manager.getReference(PedidoPda.class, pedido));
+		
+		manager.getTransaction().commit();
+	}
 	
 	
 	//########## A partir daqui foi utilizado outro tipo de conexao com o banco que não o Hibernate #########
