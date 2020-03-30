@@ -67,7 +67,7 @@ public class PedidoPdaDAO {
 		ItemPedidoPdaDAO dao = new ItemPedidoPdaDAO(man);
 		dao.inserirItens(pedido.getItens());
 	}
-	//Esse método serve tanto para inserir quanto para alterar os pedidoPda.
+
 	public void alterar(PedidoPda pedido) {
 		manager.getTransaction().begin();
 		this.manager.merge(pedido);

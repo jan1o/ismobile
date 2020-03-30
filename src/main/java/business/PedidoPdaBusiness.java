@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import model.Configuracao;
+import model.Cliente;
 import model.ItemPedidoPda;
 import model.PedidoPda;
 import model.Usuario;
@@ -73,6 +73,12 @@ public class PedidoPdaBusiness {
 		
 	}
 	
+	//Prepara os atributos para cadastro de um novo pedido
+	public List<Cliente> preparaCadastro() throws Exception{
+		ClienteDAO dao = new ClienteDAO(new Utilitarios().configuracaoPostgres());
+		return dao.listaNomeCodigoClientes();
+	}
+	
 	public void cadastrarPedidoPda(PedidoPda pedido) throws Exception {
 		//DAO de pedidoPda
 		EntityManager manager = JpaUtil.getEntityManager();
@@ -99,5 +105,22 @@ public class PedidoPdaBusiness {
 		//Incrementar a sequencia_pedido_pda do vendedor
 		udao.updateSequenciaPedidoPda(v);
 		
+		manager.close();
+	}
+	
+	public void alterarPedidoPda(PedidoPda pedido) {
+		EntityManager manager = JpaUtil.getEntityManager();
+		PedidoPdaDAO dao = new PedidoPdaDAO(manager);
+		
+		dao.alterar(pedido);
+	}
+	
+	public void excluirPedidoPda(PedidoPda pedido) {
+		EntityManager manager = JpaUtil.getEntityManager();
+		PedidoPdaDAO dao = new PedidoPdaDAO(manager);
+		
+		dao.deletar(pedido);
+		
+		manager.close();
 	}
 }

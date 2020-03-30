@@ -5,8 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Configuracao;
+
+import model.Cliente;
 
 public class ClienteDAO {
 
@@ -41,5 +45,28 @@ public class ClienteDAO {
 			throw new SQLException(e.getMessage());
 		}
 		return nome;
+	}
+	
+	public List<Cliente> listaNomeCodigoClientes() throws SQLException{
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		try {
+			String sql;
+			sql = "SELECT c.nome, c.codigo from cliente c ";
+			
+			PreparedStatement listarStatement = con.prepareStatement(sql);
+			ResultSet rs = listarStatement.executeQuery();
+			
+			boolean EOF = rs.next();
+			while(EOF == true) {
+				Cliente c = new Cliente();
+				c.setNome(rs.getString(1));
+				c.setCodigo(rs.getInt(2));
+				clientes.add(c);
+				EOF = rs.next();
+			}
+		} catch (Exception e) {
+			throw new SQLException(e.getMessage());
+		}
+		return clientes;
 	}
 }
