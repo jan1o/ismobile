@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<f:metadata>
-		<f:viewAction action="#{pedidoPdaBean.listaPedidoPda}" />
+		<f:viewAction action="#{listaDeletaPedidoPdaBean.listaPedidoPda}" />
 	</f:metadata>
 	<ui:define name="titulo">Consulta de Pedidos</ui:define>
 	<ui:define name="corpo">
@@ -16,10 +16,10 @@
 			<h:form id="frm">
 				<div class="ui-fluid">
 					<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-					
-					<p:dataTable value="#{pedidoPdaBean.pedidosPda}" var="pedidoPda"
-						border="1" cellspacing="0" cellpadding="2" paginator="true"
-						rows="5" paginatorPosition="bottom">
+
+					<p:dataTable value="#{listaDeletaPedidoPdaBean.pedidosPda}"
+						var="pedidoPda" border="1" cellspacing="0" cellpadding="2"
+						paginator="true" rows="5" paginatorPosition="bottom">
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Número" converter="javax.faces.Integer" />
@@ -54,34 +54,35 @@
 						</p:column>
 
 						<p:column>
-						
-						                              <!-- Listar item pedidos -->
+
+							<!-- Listar item pedidos -->
 							<p:commandButton icon="ui-icon-search" title="Ver"
 								process="@this" update="@none"
-								action="#{pedidoPdaBean.listaItemPedidoPda}">
+								action="#{listaDeletaPedidoPdaBean.listaItemPedidoPda}">
 								<f:setPropertyActionListener value="#{pedidoPda}"
-									target="#{pedidoPdaBean.pedidoPdaSelecionado}" />
+									target="#{listaDeletaPedidoPdaBean.pedidoPdaSelecionado}" />
 
 							</p:commandButton>
-							
-							                          <!-- Editar -->
+
+							<!-- Editar -->
 
 							<p:button icon="ui-icon-pencil" title="Editar" />
-							
-							                          <!-- Excluir -->
+
+							<!-- Excluir -->
 
 
 							<p:commandButton icon="ui-icon-trash"
-								action="#{pedidoPdaBean.excluirItemPedidoPda}" update="@form">
+								action="#{listaDeletaPedidoPdaBean.excluirItemPedidoPda}"
+								update="@form">
 								<f:setPropertyActionListener value="#{pedidoPda}"
-									target="#{pedidoPdaBean.pedidoPdaSelecionado}" />
-								<p:confirm header="Confirmação" message="Quer mesmo excluir este pedido?"
-									icon="ui-icon-alert" />
+									target="#{listaDeletaPedidoPdaBean.pedidoPdaSelecionado}" />
+								<p:confirm header="Confirmação"
+									message="Quer mesmo excluir este pedido?" icon="ui-icon-alert" />
 							</p:commandButton>
 
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade">
-								<p:commandButton value="Sim" update="@form" type="button" 
+								<p:commandButton value="Sim" update="@form" type="button"
 									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 								<p:commandButton value="Não" type="button"
 									styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
@@ -89,9 +90,12 @@
 						</p:column>
 					</p:dataTable>
 					<br />
-					<p:commandButton value="Novo Pedido" id="withIcon"
-						action="/Login.xhtml" style="margin-right:20px;"
-						icon="ui-icon-plusthick" />
+					
+						<p:commandButton value="Novo Pedido" id="withIcon"
+							action="/NovoPedidoPda?faces-redirect=true"
+							style="margin-right:20px;" icon="ui-icon-plusthick" />
+							
+					
 				</div>
 			</h:form>
 		</div>

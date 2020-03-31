@@ -42,6 +42,16 @@ footer {
 	margin-bottom: 10px
 }
 
+#externo {
+	display: table;
+}
+
+.interno {
+	
+	float: left;
+	padding-right: 100px;
+}
+
 h1 {
 	font-size: 24px;
 	font-weight: 500;

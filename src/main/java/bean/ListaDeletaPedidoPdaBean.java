@@ -1,8 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,23 +9,19 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.persistence.EntityManager;
 
 import org.primefaces.context.RequestContext;
 
-import model.ItemPedido;
+
 import model.ItemPedidoPda;
-import model.Pedido;
 import model.PedidoPda;
-import repository.PedidoDAO;
 import repository.PedidoPdaDAO;
 import util.JpaUtil;
-import util.Utilitarios;
 
 @ManagedBean
 @SessionScoped
-public class PedidoPdaBean implements Serializable {
+public class ListaDeletaPedidoPdaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private PedidoPda pedidoPdaSelecionado = new PedidoPda();
@@ -36,8 +30,12 @@ public class PedidoPdaBean implements Serializable {
 	private List<PedidoPda> pedidosPda;
 	private List<ItemPedidoPda> itemPedidoPda;
 
+	
 
 	
+
+	
+
 
 	public void listaPedidoPda() throws Exception {
 		
@@ -76,8 +74,7 @@ public class PedidoPdaBean implements Serializable {
 		
 		
 	}
-
-
+		
 
 	public PedidoPda getPedidoPdaSelecionado() {
 		return pedidoPdaSelecionado;
