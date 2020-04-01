@@ -21,7 +21,7 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@NotNull
 	private int numero_pedido_pda; // numeric(6,0) NOT NULL,
@@ -31,7 +31,7 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	private int codigo_vendedor; // numeric(6,0) NOT NULL,
 	
 	@ManyToOne @JoinColumn(name="codigo_produto", nullable=true, foreignKey = @ForeignKey(name = "item_pedido_pda_c_p_fk"))
-	private int codigo_produto; // numeric(10,0) NOT NULL,
+	private Produto produto; // numeric(10,0) NOT NULL,
 	
 	@Column
 	private int quantidade; // numeric(18,4),
@@ -43,12 +43,12 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	public ItemPedidoPda() {
 		
 	}
-	public ItemPedidoPda(int numero_pedido_pda, int codigo_vendedor, int codigo_produto, int quantidade,
+	public ItemPedidoPda(int numero_pedido_pda, int codigo_vendedor, Produto produto, int quantidade,
 			double valor) {
 		
 		this.numero_pedido_pda = numero_pedido_pda;
 		this.codigo_vendedor = codigo_vendedor;
-		this.codigo_produto = codigo_produto;
+		this.produto = produto;
 		this.quantidade = quantidade;
 		this.valor = valor;
 	}
@@ -82,11 +82,12 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	public void setCodigo_vendedor(int codigo_vendedor) {
 		this.codigo_vendedor = codigo_vendedor;
 	}
-	public int getCodigo_produto() {
-		return codigo_produto;
+	
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setCodigo_produto(int codigo_produto) {
-		this.codigo_produto = codigo_produto;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	public void setValor(Double valor) {
 		this.valor = valor;

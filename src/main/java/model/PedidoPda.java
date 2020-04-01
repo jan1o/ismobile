@@ -30,12 +30,14 @@ public class PedidoPda implements Comparable, Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
 	@Column(name="numero")
 	private int numero;
 	@Column(name="data", nullable=false)
     private Date data;
     @ManyToOne @JoinColumn(name="codigo_cliente", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_cli_fk"))
     private Cliente cliente;
+    @Id
     @ManyToOne @JoinColumn(name="codigo_vendedor", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_ve_fk"))
     private Vendedor vendedor;
     @ManyToOne @JoinColumn(name="codigo_plano_pagamento", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_pp_fk"))
@@ -56,7 +58,7 @@ public class PedidoPda implements Comparable, Serializable{
     private int longitude;
     @Column(name="observacao")
     private String observacao;
-    @OneToMany(fetch=FetchType.EAGER, mappedBy="pedido_pda, codigo_vendedor", cascade=CascadeType.ALL)
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="itemPedidoPdaPK.numero_pedido_pda", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<ItemPedidoPda> lista;
     

@@ -9,6 +9,10 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 		<class>model.Usuario</class>
 		<class>model.PedidoPda</class>
 		<class>model.ItemPedidoPda</class>
+		<class>model.Cliente</class>
+		<class>model.CondicaoPagamento</class>
+		<class>model.Produto</class>
+		<class>model.Vendedor</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/INSEALI" />

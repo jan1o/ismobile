@@ -26,7 +26,7 @@ public class ProdutoDAO {
 	}
 	
 	public List<Produto> listarProdutos(){
-		Query query = manager.createQuery("from produto ");
+		Query query = manager.createQuery("FROM Produto ");
 		List<Produto> produtos = query.getResultList();
 
 		return produtos;

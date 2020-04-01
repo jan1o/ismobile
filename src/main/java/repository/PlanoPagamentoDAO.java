@@ -23,7 +23,7 @@ public class PlanoPagamentoDAO {
 	}
 	
 	public List<CondicaoPagamento> listarCondicoesPagamento(){
-		Query query = manager.createQuery("from plano_pagamento ");
+		Query query = manager.createQuery("FROM CondicaoPagamento ");
 		List<CondicaoPagamento> cds = query.getResultList();
 
 		return cds;
