@@ -50,7 +50,7 @@ public class ListaDeletaPedidoPdaBean implements Serializable {
 	
 	public void listaItemPedidoPda() {
 		
-		itemPedidoPda = pedidoPdaSelecionado.getItens();
+		itemPedidoPda = pedidoPdaSelecionado.getLista();
 		Map<String, Object> opcoes = new HashMap<>();
 		opcoes.put("modal", true);
 		opcoes.put("resizable", false);

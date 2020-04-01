@@ -45,16 +45,6 @@ public class CriaAlteraPedidoPdaBean {
 
 	public void prepara() {
 		
-		PedidoPdaBusiness Pdb = new PedidoPdaBusiness();
-		
-		try {
-			clientes = Pdb.preparaCadastro();
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Falha ", null));
-		}
-		
-		System.out.println("******************teste*******************");
-		System.out.println(clientes.get(0).getNome());
 		
 		
 	}
