@@ -5,11 +5,32 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import model.CondicaoPagamento;
 import model.Configuracao;
+import model.Produto;
 
 public class PlanoPagamentoDAO {
+	
+	private EntityManager manager;
 
+	public PlanoPagamentoDAO(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public List<CondicaoPagamento> listarCondicoesPagamento(){
+		Query query = manager.createQuery("from plano_pagamento ");
+		List<CondicaoPagamento> cds = query.getResultList();
+
+		return cds;
+	}
+	
+	//##### Código sem hibernate #####
+	/*
 	Connection con = null;
 
 	public PlanoPagamentoDAO(Configuracao configuracao) throws Exception{
@@ -44,4 +65,5 @@ public class PlanoPagamentoDAO {
 		}
 		return formaPagto;
 	}
+	*/
 }

@@ -131,7 +131,7 @@ public class Relatorio implements Comparable, InterfaceObjeto{
                 "<qv>" + getQtdVendida() + "</qv>" +
                 "<qe>" + getQtdEmbalagem() + "</qe>" +
                 "<fl>" + getVendedor().getFlex() + "</fl>" +
-                "<sf>" + getVendedor().getSaldoFlex() + "</sf>" + 
+                "<sf>" + getVendedor().getSaldo_flex() + "</sf>" + 
                 "<qo>" + getQtdOutrosPedidos() + "</qo>" +
                 "<vo>" + getOutrosPedidos() + "</vo>" +
                 "<vb>" + getValorTotalBruto() + "</vb>" +

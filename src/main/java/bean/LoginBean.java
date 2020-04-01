@@ -7,7 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.persistence.EntityManager;
 
 import model.Usuario;
-import repository.Usuarios;
+import repository.UsuarioDAO;
 import sessao.SessionContext;
 import util.JpaUtil;
 
@@ -26,14 +26,14 @@ public class LoginBean {
 	 
 	public String envia() {
 		EntityManager manager = JpaUtil.getEntityManager();
-		Usuarios usuarioDAO = new Usuarios(manager);
-		usuario = usuarioDAO.usuarioPorNome(this.nome);
+		UsuarioDAO usuarioDAO = new UsuarioDAO(manager);
+		usuario = usuarioDAO.usuarioPorNome(this.nome, this.senha);
 		if (usuario == null) {
 			usuario = new Usuario();
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
 
-		} else if (usuario != null && usuario.getSenha_usuario().equals(this.senha)) {
+		} else {
 			System.out.println("Logado");
 			SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
 			return "/Principal?faces-redirect=true";

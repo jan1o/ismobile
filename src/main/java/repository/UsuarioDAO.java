@@ -9,23 +9,23 @@ import javax.persistence.TypedQuery;
 
 import model.Usuario;
 
-public class Usuarios implements Serializable{
+public class UsuarioDAO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private EntityManager manager;
 	
-	public Usuarios(EntityManager manager) {
+	public UsuarioDAO(EntityManager manager) {
 		this.manager = manager;
 	}
 	
-	public Usuario usuarioPorNome(String nome_usuario) {
+	public Usuario usuarioPorNome(String login, String senha) {
 		try {
-		TypedQuery<Usuario> query = (TypedQuery<Usuario>) manager.createQuery(
-				"FROM Usuario U WHERE U.nome_usuario = " + "'" + nome_usuario + "'");
-		return query.getSingleResult();
+			TypedQuery<Usuario> query = (TypedQuery<Usuario>) manager.createQuery("FROM Usuario u WHERE u.nome = :login AND u.senha = :senha");
+			query.setParameter("login", login);
+			query.setParameter("senha", senha);
+			return query.getSingleResult();
 		} catch (NoResultException e) {
             return null;
       }
 	}
-
 }

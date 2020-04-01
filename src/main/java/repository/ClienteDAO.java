@@ -8,12 +8,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Configuracao;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import model.Configuracao;
+import model.PedidoPda;
 import model.Cliente;
 
 public class ClienteDAO {
+	
+	private EntityManager manager;
 
+	public ClienteDAO(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public List<Cliente> listarClientes(){
+		Query query = manager.createQuery("from cliente ");
+		List<Cliente> clientes = query.getResultList();
+
+		return clientes;
+	}
+	
+	
+	
+	//###### Código sem hibernate ######
+	/*
 	Connection con = null;
 
 	public ClienteDAO(Configuracao configuracao) throws Exception {
@@ -47,6 +67,7 @@ public class ClienteDAO {
 		return nome;
 	}
 	
+	
 	public List<Cliente> listaNomeCodigoClientes() throws SQLException{
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try {
@@ -69,4 +90,5 @@ public class ClienteDAO {
 		}
 		return clientes;
 	}
+	*/
 }

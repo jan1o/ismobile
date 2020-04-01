@@ -16,6 +16,7 @@ public class ItemPedidoPdaDAO {
 		this.manager = manager;
 	}
 	
+	/*
 	public List<ItemPedidoPda> listarPorPedidoPda(PedidoPda pedido){
 		Query query = manager.createQuery(
 				"from ItemPedidoPda i where i.numero_pedido_pda = :num and i.codigo_vendedor = :ven ");
@@ -44,13 +45,14 @@ public class ItemPedidoPdaDAO {
 	//Isso é uma gambiarra meu consagrado! Pelas caridade, só use se for necessário e preferêncialmente altere!
 	public void alterarItensPedido(PedidoPda pedido) {
 		
-		/* Ói meu fí, esse negocio tá funfando da seguinte forma:
-		 * Em vez da funçã sair comparando item por item (o que levaria uma vida e seria demorado e dificil demais),
-		 * ela simplesmente deleta todos os itensPedidoPda desse PedidoPda e adiciona os novos. Num disse que era uma gambiarra? 
-		*/
+		// Ói meu fí, esse negocio tá funfando da seguinte forma:
+		// Em vez da funçã sair comparando item por item (o que levaria uma vida e seria demorado e dificil demais),
+		// ela simplesmente deleta todos os itensPedidoPda desse PedidoPda e adiciona os novos. Num disse que era uma gambiarra? 
+		
 		
 		deletarItensPedido(pedido);
 		inserirItens(pedido.getItens());
 	}
+	*/
 	
 }

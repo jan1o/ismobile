@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -29,8 +30,7 @@ public class ItemPedidoPda implements Comparable, Serializable{
 	@NotNull
 	private int codigo_vendedor; // numeric(6,0) NOT NULL,
 	
-	@Id
-	@NotNull
+	@ManyToOne @JoinColumn(name="codigo_produto", nullable=true, foreignKey = @ForeignKey(name = "item_pedido_pda_c_p_fk"))
 	private int codigo_produto; // numeric(10,0) NOT NULL,
 	
 	@Column

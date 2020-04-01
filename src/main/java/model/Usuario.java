@@ -13,84 +13,112 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable{
-	
+public class Usuario implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_usuario; //numeric(3,0) NOT NULL DEFAULT nextval('codigo_usuario'::regclass),
-	
-	@NotNull
-	@Size(max = 50)
-	private String nome_usuario; // character varying(50) NOT NULL,
-	
-	@NotNull
-	@Size(max = 30)
-	private String senha_usuario; // character varying(30) NOT NULL,
-	
-	@NotNull
+	@Column(name = "codigo_usuario", nullable = false, length = 3)
+	private int id; // numeric(3,0) NOT NULL DEFAULT nextval('codigo_usuario'::regclass),
+
+	@Column(name = "nome_usuario", nullable = false, length = 50)
+	private String nome; // character varying(50) NOT NULL,
+
+	@Column(name = "senha_usuario", nullable = false, length = 30)
+	private String senha; // character varying(30) NOT NULL,
+
 	private int limitado; // numeric(1,0) DEFAULT 0,
-	
-	@NotNull
-	private int codigo_supervisor; // numeric(3,0),
-	
-	@NotNull
+
+	@Column(name = "codigo_supervisor", length = 3)
+	private int idSupervisor; // numeric(3,0),
+
 	private int exclusividade; // numeric(1,0) DEFAULT 0,
-	
-	@NotNull
+
 	private int bloqueado; // numeric(1,0) DEFAULT 0,
-	
-	public int getCodigo_usuario() {
-		return codigo_usuario;
+
+	@Column(name = "codigo_cliente", length = 6)
+	private int idCliente;
+
+	@Column(name = "codigo_vendedor", length = 6)
+	private int idVendedor;
+
+	public int getId() {
+		return id;
 	}
-	public void setCodigo_usuario(int codigo_usuario) {
-		this.codigo_usuario = codigo_usuario;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getNome_usuario() {
-		return nome_usuario;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setNome_usuario(String nome_usuario) {
-		this.nome_usuario = nome_usuario;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getSenha_usuario() {
-		return senha_usuario;
+
+	public String getSenha() {
+		return senha;
 	}
-	public void setSenha_usuario(String senha_usuario) {
-		this.senha_usuario = senha_usuario;
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
+
 	public int getLimitado() {
 		return limitado;
 	}
+
 	public void setLimitado(int limitado) {
 		this.limitado = limitado;
 	}
-	public int getCodigo_supervisor() {
-		return codigo_supervisor;
+
+	public int getIdSupervisor() {
+		return idSupervisor;
 	}
-	public void setCodigo_supervisor(int codigo_supervisor) {
-		this.codigo_supervisor = codigo_supervisor;
+
+	public void setIdSupervisor(int idSupervisor) {
+		this.idSupervisor = idSupervisor;
 	}
+
 	public int getExclusividade() {
 		return exclusividade;
 	}
+
 	public void setExclusividade(int exclusividade) {
 		this.exclusividade = exclusividade;
 	}
+
 	public int getBloqueado() {
 		return bloqueado;
 	}
+
 	public void setBloqueado(int bloqueado) {
 		this.bloqueado = bloqueado;
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + codigo_usuario;
-		return result;
+
+	public int getIdCliente() {
+		return idCliente;
 	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public int getIdVendedor() {
+		return idVendedor;
+	}
+
+	public void setIdVendedor(int idVendedor) {
+		this.idVendedor = idVendedor;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -100,13 +128,21 @@ public class Usuario implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (codigo_usuario != other.codigo_usuario)
+		if (id != other.id)
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
+	// Saber que tipo de usuario esta logado
+	public boolean getUsuarioCliente() {
+		return getIdCliente() > 0;
+	}
+
+	public boolean getUsuarioVendedor() {
+		return getIdVendedor() > 0;
+	}
+
+	public boolean getUsuarioSupervisor() {
+		return getIdSupervisor() > 0;
+	}
 }

@@ -7,15 +7,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import biblioteca.Lista;
+import model.Cliente;
 import model.Configuracao;
 import model.Produto;
 
 public class ProdutoDAO {
+	
+	private EntityManager manager;
 
+	public ProdutoDAO(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public List<Produto> listarProdutos(){
+		Query query = manager.createQuery("from produto ");
+		List<Produto> produtos = query.getResultList();
+
+		return produtos;
+	}
+	
+	
+	//##### Código sem hibernate #####
+	/*
 	Connection con = null;
-
+	
+	
 	public ProdutoDAO(Configuracao configuracao) throws Exception {
 		try {
 			Class.forName(configuracao.getDriverDB());
@@ -166,4 +188,5 @@ public class ProdutoDAO {
 		}
 		return nome;
 	}
+	*/
 }
