@@ -38,10 +38,10 @@ public class Usuario implements Serializable {
 	private int bloqueado; // numeric(1,0) DEFAULT 0,
 
 	@Column(name = "codigo_cliente", length = 6)
-	private int idCliente;
+	private Integer idCliente;
 
 	@Column(name = "codigo_vendedor", length = 6)
-	private int idVendedor;
+	private Integer idVendedor;
 
 	public int getId() {
 		return id;

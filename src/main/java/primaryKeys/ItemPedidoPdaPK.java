@@ -2,6 +2,7 @@ package primaryKeys;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -9,8 +10,20 @@ public class ItemPedidoPdaPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name = "numero_pedido_pda")
 	private int numero_pedido_pda;
+	
+	@Column(name="codigo_vendedor")
 	private int codigo_vendedor;
+	
+	public ItemPedidoPdaPK() {
+		
+	}
+	
+	public ItemPedidoPdaPK(int numero_pedido_pda, int codigo_vendedor) {
+		this.numero_pedido_pda = numero_pedido_pda;
+		this.codigo_vendedor = codigo_vendedor;
+	}
 	
 	public int getNumero_pedido_pda() {
 		return numero_pedido_pda;

@@ -9,6 +9,7 @@ import model.ItemPedidoPda;
 import model.PedidoPda;
 import model.Usuario;
 import model.Vendedor;
+import primaryKeys.ItemPedidoPdaPK;
 import repository.ClienteDAO;
 import repository.PedidoPdaDAO;
 import repository.PlanoPagamentoDAO;
@@ -65,8 +66,8 @@ public class PedidoPdaBusiness {
 		pedido.setNumero(v.getSequencia_pedido_pda() + 1);
 		pedido.getVendedor().setCodigo(v.getCodigo());
 		for(ItemPedidoPda i : pedido.getLista()) {
-			i.setNumero_pedido_pda(pedido.getNumero());
-			i.setCodigo_vendedor(pedido.getVendedor().getCodigo());
+			ItemPedidoPdaPK pk = new ItemPedidoPdaPK(pedido.getNumero(), pedido.getVendedor().getCodigo());
+			i.setPk(pk);
 		}
 		
 		//Adicionar o novo pedido pda

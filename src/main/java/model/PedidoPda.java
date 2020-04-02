@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -23,6 +24,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import primaryKeys.PedidoPdaPK;
+
 @Entity
 @Table(name = "pedido_pda")
 public class PedidoPda implements Comparable, Serializable{
@@ -30,16 +33,19 @@ public class PedidoPda implements Comparable, Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	 
+	
 	@Id
 	@Column(name="numero")
 	private int numero;
-	@Column(name="data", nullable=false)
-    private Date data;
-    @ManyToOne @JoinColumn(name="codigo_cliente", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_cli_fk"))
-    private Cliente cliente;
-    @Id
+	@Id
     @ManyToOne @JoinColumn(name="codigo_vendedor", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_ve_fk"))
     private Vendedor vendedor;
+	
+	@ManyToOne @JoinColumn(name="codigo_cliente", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_cli_fk"))
+	private Cliente cliente;
+	@Column(name="data", nullable=false)
+    private Date data;
     @ManyToOne @JoinColumn(name="codigo_plano_pagamento", nullable=true, foreignKey = @ForeignKey(name = "pedido_pda_c_pp_fk"))
     private CondicaoPagamento condicaoPagamento;
     @Column(name="frios")
@@ -58,24 +64,24 @@ public class PedidoPda implements Comparable, Serializable{
     private int longitude;
     @Column(name="observacao")
     private String observacao;
-    @OneToMany(fetch=FetchType.EAGER, mappedBy="itemPedidoPdaPK.numero_pedido_pda", cascade=CascadeType.ALL)
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="pk", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<ItemPedidoPda> lista;
     
     public PedidoPda() {
     	
     }
-    
-    
-	public int getNumero() {
-		return numero;
+
+    /*
+	public PedidoPdaPK getPk() {
+		return pk;
 	}
 
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setPk(PedidoPdaPK pk) {
+		this.pk = pk;
 	}
-
+	*/
 
 	public Date getData() {
 		return data;
@@ -94,16 +100,6 @@ public class PedidoPda implements Comparable, Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
 	}
 
 
@@ -206,7 +202,22 @@ public class PedidoPda implements Comparable, Serializable{
 		this.lista = lista;
 	}
 
-	
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -214,7 +225,6 @@ public class PedidoPda implements Comparable, Serializable{
 		result = prime * result + numero;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -230,10 +240,39 @@ public class PedidoPda implements Comparable, Serializable{
 		return true;
 	}
 
+	
+	/*
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
+		return result;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PedidoPda other = (PedidoPda) obj;
+		if (pk == null) {
+			if (other.pk != null)
+				return false;
+		} else if (!pk.equals(other.pk))
+			return false;
+		return true;
+	}
+	*/
 
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 }

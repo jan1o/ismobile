@@ -34,7 +34,7 @@ public class PedidoPdaDAO {
 	// ########## codigo com mapeamento completo no hibernate #########
 
 	public List<PedidoPda> listarTodos(int idVendedor) {
-		Query query = manager.createQuery("FROM PedidoPda p WHERE p.codigo_vendedor = :id and p.processado is null");
+		Query query = manager.createQuery("FROM PedidoPda p WHERE p.vendedor.codigo = :id and p.processado is null");
 		query.setParameter("id", idVendedor);
 		List<PedidoPda> pedidos = query.getResultList();
 
