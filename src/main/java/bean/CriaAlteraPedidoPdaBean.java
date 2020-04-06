@@ -26,10 +26,9 @@ import util.JpaUtil;
 @SessionScoped
 public class CriaAlteraPedidoPdaBean {
 	private static final long serialVersionUID = 1L;
-
-	private PedidoPda pedidoPdaSelecionado = new PedidoPda();
 	
 	private PedidoPda pedido = new PedidoPda();
+	private PedidoPdaBusiness pdb = new PedidoPdaBusiness();
 	
 	//**************Testes para a tela NovoPedidoPda**************
 	private List<Cliente> clientes;
@@ -45,7 +44,7 @@ public class CriaAlteraPedidoPdaBean {
 
 	public void prepara() {
 		
-		
+		clientes = pdb.listaClientes();
 		
 	}
 	
@@ -53,31 +52,6 @@ public class CriaAlteraPedidoPdaBean {
 		
 	}
 	
-	
-	
-
-
-	
-
-	
-
-
-	
-	
-	
-
-	
-
-	
-		
-
-	public PedidoPda getPedidoPdaSelecionado() {
-		return pedidoPdaSelecionado;
-	}
-
-	public void setPedidoPdaSelecionado(PedidoPda pedidoPdaSelecionado) {
-		this.pedidoPdaSelecionado = pedidoPdaSelecionado;
-	}
 
 	public List<Cliente> getClientes() {
 		return clientes;
@@ -125,6 +99,15 @@ public class CriaAlteraPedidoPdaBean {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
+	public PedidoPdaBusiness getPdb() {
+		return pdb;
+	}
+
+	public void setPdb(PedidoPdaBusiness pdb) {
+		this.pdb = pdb;
+	}
+	
 
 
 }

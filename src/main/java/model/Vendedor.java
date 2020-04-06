@@ -151,7 +151,7 @@ public class Vendedor implements Comparable, Serializable {
 	private int destacar_pedido;
 	
 	@Column(name="numero_pedido")
-	private int numero_pedido;
+	private Integer numero_pedido;
 	
 	@Column(name="sequencia_pedido_pda")
 	private int sequencia_pedido_pda;
@@ -490,11 +490,11 @@ public class Vendedor implements Comparable, Serializable {
 		this.destacar_pedido = destacar_pedido;
 	}
 
-	public int getNumero_pedido() {
+	public Integer getNumero_pedido() {
 		return numero_pedido;
 	}
 
-	public void setNumero_pedido(int numero_pedido) {
+	public void setNumero_pedido(Integer numero_pedido) {
 		this.numero_pedido = numero_pedido;
 	}
 

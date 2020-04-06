@@ -79,10 +79,10 @@ public class CondicaoPagamento implements Comparable, InterfaceObjeto {
 	private int pedir_senha; // numeric(1,0) DEFAULT 0,
 
 	@Column(name = "desconto_maximo")
-	private double desconto_maximo; // numeric(12,2),
+	private Double desconto_maximo; // numeric(12,2),
 
 	@Column(name = "codigo_financeira")
-	private int codigo_financeira; // numeric(3,0),
+	private Integer codigo_financeira; // numeric(3,0),
 
 	@Column(name = "prazo_fim_mes")
 	private int prazo_fim_mes; // numeric(1,0) DEFAULT 0,
@@ -239,19 +239,19 @@ public class CondicaoPagamento implements Comparable, InterfaceObjeto {
 		this.pedir_senha = pedir_senha;
 	}
 
-	public double getDesconto_maximo() {
+	public Double getDesconto_maximo() {
 		return desconto_maximo;
 	}
 
-	public void setDesconto_maximo(double desconto_maximo) {
+	public void setDesconto_maximo(Double desconto_maximo) {
 		this.desconto_maximo = desconto_maximo;
 	}
 
-	public int getCodigo_financeira() {
+	public Integer getCodigo_financeira() {
 		return codigo_financeira;
 	}
 
-	public void setCodigo_financeira(int codigo_financeira) {
+	public void setCodigo_financeira(Integer codigo_financeira) {
 		this.codigo_financeira = codigo_financeira;
 	}
 

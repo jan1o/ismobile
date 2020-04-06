@@ -37,13 +37,13 @@
 							<f:facet name="header">
 								<h:outputText value="Cliente" />
 							</f:facet>
-							<h:outputText value="#{pedidoPda.codigo_cliente}" />
+							<h:outputText value="#{pedidoPda.cliente.nome}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Forma de Pagamento" />
 							</f:facet>
-							<h:outputText value="#{pedidoPda.codigo_plano_pagamento}" />
+							<h:outputText value="#{pedidoPda.condicaoPagamento.nome}" />
 						</p:column>
 
 						<p:column>

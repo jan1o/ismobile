@@ -121,7 +121,7 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private String autorizacao_anvisa; // character varying(20),
 
 	@Column
-	private int codigo_plano_pagto; // numeric(3,0),
+	private Integer codigo_plano_pagto; // numeric(3,0),
 
 	@NotNull
 	@Column
@@ -243,13 +243,13 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private String nacionalidade; // character varying(15),
 
 	@Column
-	private int codigo_tipo_residencia; // numeric(3,0),
+	private Integer codigo_tipo_residencia; // numeric(3,0),
 
 	@Column
 	private String tempo_residencia; // character varying(40),
 
 	@Column
-	private double aluguel_prestacao; // numeric(12,2),
+	private Double aluguel_prestacao; // numeric(12,2),
 
 	@Column
 	private String endereco_anterior; // character varying(100),
@@ -261,7 +261,7 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private Date data_emissao; // date,
 
 	@Column
-	private int numero_dependente; // numeric(3,0),
+	private Integer numero_dependente; // numeric(3,0),
 
 	@Column
 	private Date negativado; // timestamp without time zone,
@@ -270,7 +270,7 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private String negativado_por; // character varying(30),
 
 	@Column
-	private double limite_credito_original; // numeric(18,2),
+	private Double limite_credito_original; // numeric(18,2),
 
 	@Column
 	private int gerar_nfe_preco_tabela; // numeric(1,0) DEFAULT 0,
@@ -288,7 +288,7 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private String rg_mae; // character varying(20),
 
 	@Column
-	private int codigo_contador; // numeric(3,0),
+	private Integer codigo_contador; // numeric(3,0),
 
 	@Column
 	private int tipo_responsavel; // numeric(1,0) DEFAULT 0,
@@ -303,7 +303,7 @@ public class Cliente implements Comparable, InterfaceObjeto {
 	private int prazo_conta_receber; // numeric(3,0) DEFAULT 0,
 
 	@Column
-	private int codigo_local_atendimento; // numeric(3,0),
+	private Integer codigo_local_atendimento; // numeric(3,0),
 
 	@Column
 	private String profissao; // character varying(50),
@@ -592,11 +592,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.autorizacao_anvisa = autorizacao_anvisa;
 	}
 
-	public int getCodigo_plano_pagto() {
+	public Integer getCodigo_plano_pagto() {
 		return codigo_plano_pagto;
 	}
 
-	public void setCodigo_plano_pagto(int codigo_plano_pagto) {
+	public void setCodigo_plano_pagto(Integer codigo_plano_pagto) {
 		this.codigo_plano_pagto = codigo_plano_pagto;
 	}
 
@@ -912,11 +912,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.nacionalidade = nacionalidade;
 	}
 
-	public int getCodigo_tipo_residencia() {
+	public Integer getCodigo_tipo_residencia() {
 		return codigo_tipo_residencia;
 	}
 
-	public void setCodigo_tipo_residencia(int codigo_tipo_residencia) {
+	public void setCodigo_tipo_residencia(Integer codigo_tipo_residencia) {
 		this.codigo_tipo_residencia = codigo_tipo_residencia;
 	}
 
@@ -928,11 +928,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.tempo_residencia = tempo_residencia;
 	}
 
-	public double getAluguel_prestacao() {
+	public Double getAluguel_prestacao() {
 		return aluguel_prestacao;
 	}
 
-	public void setAluguel_prestacao(double aluguel_prestacao) {
+	public void setAluguel_prestacao(Double aluguel_prestacao) {
 		this.aluguel_prestacao = aluguel_prestacao;
 	}
 
@@ -960,11 +960,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.data_emissao = data_emissao;
 	}
 
-	public int getNumero_dependente() {
+	public Integer getNumero_dependente() {
 		return numero_dependente;
 	}
 
-	public void setNumero_dependente(int numero_dependente) {
+	public void setNumero_dependente(Integer numero_dependente) {
 		this.numero_dependente = numero_dependente;
 	}
 
@@ -984,11 +984,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.negativado_por = negativado_por;
 	}
 
-	public double getLimite_credito_original() {
+	public Double getLimite_credito_original() {
 		return limite_credito_original;
 	}
 
-	public void setLimite_credito_original(double limite_credito_original) {
+	public void setLimite_credito_original(Double limite_credito_original) {
 		this.limite_credito_original = limite_credito_original;
 	}
 
@@ -1032,11 +1032,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.rg_mae = rg_mae;
 	}
 
-	public int getCodigo_contador() {
+	public Integer getCodigo_contador() {
 		return codigo_contador;
 	}
 
-	public void setCodigo_contador(int codigo_contador) {
+	public void setCodigo_contador(Integer codigo_contador) {
 		this.codigo_contador = codigo_contador;
 	}
 
@@ -1072,11 +1072,11 @@ public class Cliente implements Comparable, InterfaceObjeto {
 		this.prazo_conta_receber = prazo_conta_receber;
 	}
 
-	public int getCodigo_local_atendimento() {
+	public Integer getCodigo_local_atendimento() {
 		return codigo_local_atendimento;
 	}
 
-	public void setCodigo_local_atendimento(int codigo_local_atendimento) {
+	public void setCodigo_local_atendimento(Integer codigo_local_atendimento) {
 		this.codigo_local_atendimento = codigo_local_atendimento;
 	}
 
