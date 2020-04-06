@@ -15,6 +15,7 @@ import repository.PedidoPdaDAO;
 import repository.PlanoPagamentoDAO;
 import repository.ProdutoDAO;
 import repository.UsuarioPermissaoDAO;
+import repository.VendedorDAO;
 import sessao.SessionContext;
 import util.JpaUtil;
 import util.Utilitarios;
@@ -62,9 +63,13 @@ public class PedidoPdaBusiness {
 		UsuarioPermissaoDAO udao = new UsuarioPermissaoDAO(new Utilitarios().configuracaoPostgres());
 		Vendedor v = udao.getDadosVendedor(usu.getNome());
 		
+		//DAO de Vendedor
+		EntityManager manager2 = JpaUtil.getEntityManager();
+		VendedorDAO vdao = new VendedorDAO(manager2);
+		
 		//Setar numero do pedido pda e codigo do vendedor ao pedido e aos itens
 		pedido.setNumero(v.getSequencia_pedido_pda() + 1);
-		pedido.getVendedor().setCodigo(v.getCodigo());
+		pedido.setVendedor(vdao.getVendedorPorId(v.getCodigo()));
 		for(ItemPedidoPda i : pedido.getLista()) {
 			ItemPedidoPdaPK pk = new ItemPedidoPdaPK(pedido.getNumero(), pedido.getVendedor().getCodigo());
 			i.setPk(pk);
