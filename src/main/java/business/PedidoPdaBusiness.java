@@ -76,7 +76,7 @@ public class PedidoPdaBusiness {
 		}
 		
 		//Adicionar o novo pedido pda
-		pdao.inserir(pedido);
+		pdao.salvar(pedido);
 		
 		//Incrementar a sequencia_pedido_pda do vendedor
 		udao.updateSequenciaPedidoPda(v);
@@ -88,7 +88,7 @@ public class PedidoPdaBusiness {
 		EntityManager manager = JpaUtil.getEntityManager();
 		PedidoPdaDAO dao = new PedidoPdaDAO(manager);
 		
-		dao.alterar(pedido);
+		dao.salvar(pedido);
 	}
 	
 	public void excluirPedidoPda(PedidoPda pedido) {
