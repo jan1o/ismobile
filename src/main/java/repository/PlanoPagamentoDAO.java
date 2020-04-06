@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import model.Cliente;
 import model.CondicaoPagamento;
 import model.Configuracao;
 import model.Produto;
@@ -27,6 +28,13 @@ public class PlanoPagamentoDAO {
 		List<CondicaoPagamento> cds = query.getResultList();
 
 		return cds;
+	}
+	
+	public CondicaoPagamento listarPorId(int codigo) {
+		Query query = manager.createQuery("from PlanoPagamento p where p.codigo = :id ");
+		query.setParameter("id", codigo);
+		CondicaoPagamento c = (CondicaoPagamento) query.getSingleResult();
+		return c;
 	}
 	
 	//##### Código sem hibernate #####

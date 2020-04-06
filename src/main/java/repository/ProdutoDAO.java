@@ -32,7 +32,12 @@ public class ProdutoDAO {
 		return produtos;
 	}
 	
-	
+	public Produto listarPorId(int codigo) {
+		Query query = manager.createQuery("from Produto p where p.codigo = :id ");
+		query.setParameter("id", codigo);
+		Produto p = (Produto) query.getSingleResult();
+		return p;
+	}
 	//##### Código sem hibernate #####
 	/*
 	Connection con = null;

@@ -22,22 +22,13 @@ import util.Utilitarios;
 
 public class PedidoPdaBusiness {
 	
-	// Soma o total do valor dos itens de um pedido
-	public Double getSomaTotal(List<ItemPedidoPda> itens) {
-		Double total = 0.0;
+	public List<Cliente> listaClientes(){
+		EntityManager manager = JpaUtil.getEntityManager();
+		ClienteDAO dao = new ClienteDAO(manager);
 		
-		for(ItemPedidoPda i : itens) {
-			total += (i.getValor() * i.getQuantidade());
-		}
-		
-		/*
-		for(ItemPedidoPda i : itens) {
-			total += i.getValor();
-		} */
-		
-		return total;
+		List<Cliente> lista = dao.listarClientes();
+		return lista;
 	}
-	
 	
 	public List<PedidoPda> listaPedidoPda(){
 		EntityManager manager = JpaUtil.getEntityManager();

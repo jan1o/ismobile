@@ -30,7 +30,12 @@ public class ClienteDAO {
 		return clientes;
 	}
 	
-	
+	public Cliente listarPorId(int codigo) {
+		Query query = manager.createQuery("from Cliente c where c.codigo = :id ");
+		query.setParameter("id", codigo);
+		Cliente c = (Cliente) query.getSingleResult();
+		return c;
+	}
 	
 	//###### Código sem hibernate ######
 	/*

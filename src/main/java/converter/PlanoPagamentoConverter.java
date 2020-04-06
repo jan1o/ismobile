@@ -8,32 +8,34 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.persistence.EntityManager;
 
-import org.hibernate.Hibernate;
-
-import model.Cliente;
+import model.CondicaoPagamento;
 import model.Produto;
-import repository.ClienteDAO;
+import repository.PlanoPagamentoDAO;
+import repository.ProdutoDAO;
 import util.JpaUtil;
 
-@FacesConverter(forClass = Cliente.class)
-public class ClienteConverter implements Converter, Serializable {
-
+@FacesConverter(forClass = CondicaoPagamento.class)
+public class PlanoPagamentoConverter implements Converter, Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+
 	//***** MÉTODO INACABADO, ESPERANDO ATUALIZAÇÂO DO DAO ***!!!!
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String codigo) {
 
-		Cliente retorno = null;
+		CondicaoPagamento retorno = null;
 		EntityManager manager = JpaUtil.getEntityManager();
 
 		try {
 			if (codigo != null && !"".equals(codigo)) {
-				ClienteDAO clienteDao = new ClienteDAO(manager);
-				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
+				//ClienteDAO clienteDao = new ClienteDAO(manager);
+				//retorno = clienteDao.porId(new Long(value));
+				PlanoPagamentoDAO dao = new PlanoPagamentoDAO(manager);
+				retorno = dao.listarPorId(Integer.getInteger(codigo));
 			}
 			return retorno;
 		} finally {
@@ -51,5 +53,4 @@ public class ClienteConverter implements Converter, Serializable {
 		}
 		return null;
 	}
-
 }

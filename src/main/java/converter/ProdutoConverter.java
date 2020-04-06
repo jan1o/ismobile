@@ -10,30 +10,33 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Hibernate;
 
-import model.Cliente;
 import model.Produto;
-import repository.ClienteDAO;
+import repository.ProdutoDAO;
 import util.JpaUtil;
 
-@FacesConverter(forClass = Cliente.class)
-public class ClienteConverter implements Converter, Serializable {
+@FacesConverter(forClass = Produto.class)
+public class ProdutoConverter implements Converter, Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+
 	//***** MÉTODO INACABADO, ESPERANDO ATUALIZAÇÂO DO DAO ***!!!!
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String codigo) {
 
-		Cliente retorno = null;
+		Produto retorno = null;
 		EntityManager manager = JpaUtil.getEntityManager();
 
 		try {
 			if (codigo != null && !"".equals(codigo)) {
-				ClienteDAO clienteDao = new ClienteDAO(manager);
-				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
+				//ClienteDAO clienteDao = new ClienteDAO(manager);
+				//retorno = clienteDao.porId(new Long(value));
+				ProdutoDAO dao = new ProdutoDAO(manager);
+				retorno = dao.listarPorId(Integer.getInteger(codigo));
 			}
 			return retorno;
 		} finally {
@@ -51,5 +54,4 @@ public class ClienteConverter implements Converter, Serializable {
 		}
 		return null;
 	}
-
 }

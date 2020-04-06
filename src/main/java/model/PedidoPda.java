@@ -71,7 +71,14 @@ public class PedidoPda implements Comparable, Serializable{
     public PedidoPda() {
     	
     }
-
+    
+    public Double ValorTotalItens() {
+    	Double total = 0.0;
+    	for(ItemPedidoPda i : this.lista) {
+    		total += (i.getQuantidade() * i.getValor());
+    	}
+    	return total;
+    }
     /*
 	public PedidoPdaPK getPk() {
 		return pk;
