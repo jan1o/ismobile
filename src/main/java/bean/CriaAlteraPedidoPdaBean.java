@@ -1,6 +1,7 @@
 package bean;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.primefaces.context.RequestContext;
 
 import business.PedidoPdaBusiness;
 import model.Cliente;
+import model.CondicaoPagamento;
 import model.ItemPedidoPda;
 import model.PedidoPda;
 import model.Produto;
@@ -24,20 +26,22 @@ import util.JpaUtil;
 
 @ManagedBean
 @SessionScoped
-public class CriaAlteraPedidoPdaBean {
+public class CriaAlteraPedidoPdaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private PedidoPda pedido = new PedidoPda();
 	private PedidoPdaBusiness pdb = new PedidoPdaBusiness();
+	private ItemPedidoPda itemSelecionado = new ItemPedidoPda();
+	
 	
 	//**************Testes para a tela NovoPedidoPda**************
 	private List<Cliente> clientes;
-	private Cliente cliente = new Cliente();
-	private Date data;
-	
-	
+	private List<CondicaoPagamento> condicoesPg; 
 	private List<Produto> produtos;
-	private Produto produto = new Produto();
+	private List<ItemPedidoPda> itensPedidoPda; 
+	
+	private ItemPedidoPda item = new ItemPedidoPda();
+	
 	//************************************************************
 	
 	
@@ -45,10 +49,29 @@ public class CriaAlteraPedidoPdaBean {
 	public void prepara() {
 		
 		clientes = pdb.listaClientes();
+		condicoesPg = pdb.listaCondicaoPagamento();
+		produtos = pdb.listaProduto();
 		
 	}
 	
-	public void Salvar() {
+	public void Salvar() throws Exception {
+		
+		pedido.setLista(itensPedidoPda);
+		pdb.cadastrarPedidoPda(pedido);
+		
+		
+	}
+	
+	public void AdicionarProduto() {
+		
+		itensPedidoPda.add(item);
+		//item = new ItemPedidoPda();
+		
+	}
+	
+	public void RemoveProduto() {
+		
+		itensPedidoPda.remove(itemSelecionado);
 		
 	}
 	
@@ -61,13 +84,6 @@ public class CriaAlteraPedidoPdaBean {
 		this.clientes = clientes;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
 
 	public PedidoPda getPedido() {
 		return pedido;
@@ -77,13 +93,6 @@ public class CriaAlteraPedidoPdaBean {
 		this.pedido = pedido;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
@@ -92,13 +101,6 @@ public class CriaAlteraPedidoPdaBean {
 		this.produtos = produtos;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
 
 	public PedidoPdaBusiness getPdb() {
 		return pdb;
@@ -107,6 +109,39 @@ public class CriaAlteraPedidoPdaBean {
 	public void setPdb(PedidoPdaBusiness pdb) {
 		this.pdb = pdb;
 	}
+
+	public List<CondicaoPagamento> getCondicoesPg() {
+		return condicoesPg;
+	}
+
+	public void setCondicoesPg(List<CondicaoPagamento> condicoesPg) {
+		this.condicoesPg = condicoesPg;
+	}
+
+	public List<ItemPedidoPda> getItensPedidoPda() {
+		return itensPedidoPda;
+	}
+
+	public void setItensPedidoPda(List<ItemPedidoPda> itensPedidoPda) {
+		this.itensPedidoPda = itensPedidoPda;
+	}
+
+	public ItemPedidoPda getItem() {
+		return item;
+	}
+
+	public void setItem(ItemPedidoPda item) {
+		this.item = item;
+	}
+
+	public ItemPedidoPda getItemSelecionado() {
+		return itemSelecionado;
+	}
+
+	public void setItemSelecionado(ItemPedidoPda itemSelecionado) {
+		this.itemSelecionado = itemSelecionado;
+	}
+	
 	
 
 

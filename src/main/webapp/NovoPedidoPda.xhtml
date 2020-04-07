@@ -20,7 +20,7 @@
 
 						<p:outputLabel value="Cliente:" />
 						<p:selectOneMenu id="cliente"
-							value="#{criaAlteraPedidoPdaBean.cliente}" dynamic="true"
+							value="#{criaAlteraPedidoPdaBean.pedido.cliente}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
 							label="Cliente:">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
@@ -32,35 +32,42 @@
 
 						<p:outputLabel for="data" value="Data:" />
 						<p:calendar id="data" size="18"
-							value="#{CriaAlteraPedidoPdaBean.data}" />
+							value="#{CriaAlteraPedidoPdaBean.pedido.data}" />
 
-						<p:outputLabel value="Plano de Pagamento:" for="plnPG" />
-						<p:inputText id="plnPG" size="18" value="" />
+						<p:outputLabel value="Condição de Pagamento:" for="condicaoPagamento" />
+						<p:selectOneMenu id="condicaoPagamento"
+							value="#{criaAlteraPedidoPdaBean.pedido.condicaoPagamento}" dynamic="true"
+							style="width:165px" filter="true" filterMatchMode="startsWith"
+							label="Cliente:">
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
+								var="clnt" itemValue="#{condicaoPagamento}" itemLabel="#{condicaoPagamento.nome}" />
+						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação:" for="obs" />
-						<p:inputTextarea id="obs" size="150" value="" />
+						<p:inputTextarea id="obs" size="150" value="#{criaAlteraPedidoPdaBean.pedido.observacao}" />
 
 
 						<p:outputLabel for="retirado" value="Retirado:" />
-						<p:selectOneRadio id="retirado" value="teste">
+						<p:selectOneRadio id="retirado" value="#{criaAlteraPedidoPdaBean.pedido.retirado}" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="negociacao" value="Negociação:" />
-						<p:selectOneRadio id="negociacao" value="teste">
+						<p:selectOneRadio id="negociacao" value="#{criaAlteraPedidoPdaBean.pedido.negociacao}" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="consignado" value="Consignado:" />
-						<p:selectOneRadio id="consignado" value="teste">
+						<p:selectOneRadio id="consignado" value="teste}" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="tipoDfe" value="Tipo DF-e:" />
-						<p:selectOneRadio id="tipoDfe" value="teste">
+						<p:selectOneRadio id="tipoDfe" value="teste" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="DF-e" itemValue="1" />
 							<f:selectItem itemLabel="Outro" itemValue="0" />
 						</p:selectOneRadio>
@@ -79,7 +86,7 @@
 
 
 						<p:selectOneMenu id="produto"
-							value="#{criaAlteraPedidoPdaBean.produto}" dynamic="true"
+							value="#{criaAlteraPedidoPdaBean.item.produto}" dynamic="true"
 							style="width:125px" filter="true" filterMatchMode="startsWith"
 							label="Todos os Produtos">
 							<f:selectItem itemLabel="Produtos" noSelectionOption="true" />

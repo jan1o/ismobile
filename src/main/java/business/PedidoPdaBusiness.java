@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.Cliente;
+import model.CondicaoPagamento;
 import model.ItemPedidoPda;
 import model.PedidoPda;
+import model.Produto;
 import model.Usuario;
 import model.Vendedor;
 import primaryKeys.ItemPedidoPdaPK;
@@ -21,6 +23,22 @@ import util.JpaUtil;
 import util.Utilitarios;
 
 public class PedidoPdaBusiness {
+	
+	public List<Produto> listaProduto(){
+		EntityManager manager = JpaUtil.getEntityManager();
+		ProdutoDAO dao = new ProdutoDAO(manager);
+		
+		List<Produto> lista = dao.listarProdutos();
+		return lista;
+	}
+	
+	public List<CondicaoPagamento> listaCondicaoPagamento(){
+		EntityManager manager = JpaUtil.getEntityManager();
+		PlanoPagamentoDAO dao = new PlanoPagamentoDAO(manager);
+		
+		List<CondicaoPagamento> lista = dao.listarCondicoesPagamento();
+		return lista;
+	}
 	
 	public List<Cliente> listaClientes(){
 		EntityManager manager = JpaUtil.getEntityManager();
