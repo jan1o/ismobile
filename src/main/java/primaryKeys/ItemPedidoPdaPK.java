@@ -4,62 +4,50 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import model.Produto;
+import model.Vendedor;
 
 @Embeddable
 public class ItemPedidoPdaPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
 	@Column(name = "numero_pedido_pda")
 	private int numero_pedido_pda;
 	
-	@Column(name="codigo_vendedor")
-	private int codigo_vendedor;
+	@ManyToOne @JoinColumn(name="codigo_vendedor", nullable=true, foreignKey = @ForeignKey(name = "item_pedido_pda_c_ve_fk"))
+	private Vendedor vendedor;
 	
-	public ItemPedidoPdaPK() {
-		
-	}
-	
-	public ItemPedidoPdaPK(int numero_pedido_pda, int codigo_vendedor) {
-		this.numero_pedido_pda = numero_pedido_pda;
-		this.codigo_vendedor = codigo_vendedor;
-	}
-	
+	@ManyToOne @JoinColumn(name="codigo_produto", nullable=true, foreignKey = @ForeignKey(name = "item_pedido_pda_c_p_fk"))
+	private Produto produto;
+
 	public int getNumero_pedido_pda() {
 		return numero_pedido_pda;
 	}
+
 	public void setNumero_pedido_pda(int numero_pedido_pda) {
 		this.numero_pedido_pda = numero_pedido_pda;
 	}
-	public int getCodigo_vendedor() {
-		return codigo_vendedor;
+
+	public Vendedor getVendedor() {
+		return vendedor;
 	}
-	public void setCodigo_vendedor(int codigo_vendedor) {
-		this.codigo_vendedor = codigo_vendedor;
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + codigo_vendedor;
-		result = prime * result + numero_pedido_pda;
-		return result;
+
+	public Produto getProduto() {
+		return produto;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemPedidoPdaPK other = (ItemPedidoPdaPK) obj;
-		if (codigo_vendedor != other.codigo_vendedor)
-			return false;
-		if (numero_pedido_pda != other.numero_pedido_pda)
-			return false;
-		return true;
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
+	
 	
 	
 

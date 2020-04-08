@@ -17,6 +17,8 @@ import model.Cliente;
 
 public class ClienteDAO {
 	
+	//###### Código com hibernate ######
+	/*
 	private EntityManager manager;
 
 	public ClienteDAO(EntityManager manager) {
@@ -36,9 +38,10 @@ public class ClienteDAO {
 		Cliente c = (Cliente) query.getSingleResult();
 		return c;
 	}
+	*/
 	
 	//###### Código sem hibernate ######
-	/*
+	
 	Connection con = null;
 
 	public ClienteDAO(Configuracao configuracao) throws Exception {
@@ -72,7 +75,22 @@ public class ClienteDAO {
 		return nome;
 	}
 	
-	
+	public Cliente listarPorId(int codigo) throws SQLException {
+		
+		Cliente c = new Cliente();
+		try {
+			String sql = "SELECT c.codigo, c.nome FROM cliente c WHERE c.codigo = ? ";
+			PreparedStatement listarStatement = con.prepareStatement(sql);
+
+			listarStatement.setInt(1, codigo);
+			ResultSet rs = listarStatement.executeQuery();
+			c.setCodigo(rs.getInt(1));
+			c.setNome(rs.getString(2));
+		} catch (Exception e) {
+			throw new SQLException(e.getMessage());
+		}
+		return c;
+	}
 	public List<Cliente> listaNomeCodigoClientes() throws SQLException{
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try {
@@ -95,5 +113,6 @@ public class ClienteDAO {
 		}
 		return clientes;
 	}
-	*/
+	
+	
 }

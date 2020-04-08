@@ -1,6 +1,7 @@
 package converter;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,6 +15,7 @@ import model.Cliente;
 import model.Produto;
 import repository.ClienteDAO;
 import util.JpaUtil;
+import util.Utilitarios;
 
 @FacesConverter(forClass = Cliente.class)
 public class ClienteConverter implements Converter, Serializable {
@@ -32,13 +34,17 @@ public class ClienteConverter implements Converter, Serializable {
 
 		try {
 			if (codigo != null && !"".equals(codigo)) {
-				ClienteDAO clienteDao = new ClienteDAO(manager);
+				//ClienteDAO clienteDao = new ClienteDAO(manager);
+				ClienteDAO clienteDao = new ClienteDAO(new Utilitarios().configuracaoPostgres());
 				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
 			}
-			return retorno;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			manager.close();
 		}
+		return retorno;
 	}
 
 	
