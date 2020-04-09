@@ -33,8 +33,7 @@ public class PedidoPda implements Comparable, Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	 
-	
+
 	@Id
 	@Column(name="numero")
 	private int numero;
@@ -64,9 +63,32 @@ public class PedidoPda implements Comparable, Serializable{
     private int longitude;
     @Column(name="observacao")
     private String observacao;
+    
+    /*
     @OneToMany(fetch=FetchType.EAGER, mappedBy="pk", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<ItemPedidoPda> lista;
+    */
+    @OneToMany(targetEntity= ItemPedidoPda.class, cascade = CascadeType.ALL) //= FetchType.LAZY, mappedBy = "pedido_pda"
+	@Fetch(FetchMode.SUBSELECT)
+	private List<ItemPedidoPda> lista;
+    
+    @Column
+    private int numero_pedido; // numeric(10,0),
+    @Column
+	private String inicio_atendimento; // character(8),
+    @Column
+	private String fim_atendimento; // character(8),
+    @Column
+	private String versao_app; // character varying(30),
+    @Column
+	private Integer consignado; // numeric(1,0) DEFAULT 0,
+    @Column
+	private Integer tipo_dfe; // numeric(1,0) DEFAULT 0,
+    @Column
+	private Integer qtd_pedidos_lote; // numeric(3,0),
+    @Column
+	private Integer numero_negociacao; // numeric(10,0),
     
     public PedidoPda() {
     	
@@ -94,6 +116,70 @@ public class PedidoPda implements Comparable, Serializable{
 		return data;
 	}
 
+
+	public int getNumero_pedido() {
+		return numero_pedido;
+	}
+
+	public void setNumero_pedido(int numero_pedido) {
+		this.numero_pedido = numero_pedido;
+	}
+
+	public String getInicio_atendimento() {
+		return inicio_atendimento;
+	}
+
+	public void setInicio_atendimento(String inicio_atendimento) {
+		this.inicio_atendimento = inicio_atendimento;
+	}
+
+	public String getFim_atendimento() {
+		return fim_atendimento;
+	}
+
+	public void setFim_atendimento(String fim_atendimento) {
+		this.fim_atendimento = fim_atendimento;
+	}
+
+	public String getVersao_app() {
+		return versao_app;
+	}
+
+	public void setVersao_app(String versao_app) {
+		this.versao_app = versao_app;
+	}
+
+	public Integer getConsignado() {
+		return consignado;
+	}
+
+	public void setConsignado(Integer consignado) {
+		this.consignado = consignado;
+	}
+
+	public Integer getTipo_dfe() {
+		return tipo_dfe;
+	}
+
+	public void setTipo_dfe(Integer tipo_dfe) {
+		this.tipo_dfe = tipo_dfe;
+	}
+
+	public Integer getQtd_pedidos_lote() {
+		return qtd_pedidos_lote;
+	}
+
+	public void setQtd_pedidos_lote(Integer qtd_pedidos_lote) {
+		this.qtd_pedidos_lote = qtd_pedidos_lote;
+	}
+
+	public Integer getNumero_negociacao() {
+		return numero_negociacao;
+	}
+
+	public void setNumero_negociacao(Integer numero_negociacao) {
+		this.numero_negociacao = numero_negociacao;
+	}
 
 	public void setData(Date data) {
 		this.data = data;
