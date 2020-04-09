@@ -35,7 +35,7 @@ public class ClienteConverter implements Converter, Serializable {
 		try {
 			if (codigo != null && !"".equals(codigo)) {
 				//ClienteDAO clienteDao = new ClienteDAO(manager);
-				ClienteDAO clienteDao = new ClienteDAO(new Utilitarios().configuracaoPostgres());
+				ClienteDAO clienteDao = new ClienteDAO(manager);
 				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
 			}
 		} catch (Exception e) {
@@ -53,7 +53,7 @@ public class ClienteConverter implements Converter, Serializable {
 	public String getAsString(FacesContext context, UIComponent component, Object objeto) {
 		// TODO Auto-generated method stub
 		if(objeto != null) {
-			return Integer.toString(((Produto) objeto).getCodigo());
+			return Integer.toString(((Cliente) objeto).getCodigo());
 		}
 		return null;
 	}

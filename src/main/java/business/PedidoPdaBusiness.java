@@ -42,10 +42,9 @@ public class PedidoPdaBusiness {
 	
 	public List<Cliente> listaClientes() throws Exception{
 		EntityManager manager = JpaUtil.getEntityManager();
-		ClienteDAO dao = new ClienteDAO(new Utilitarios().configuracaoPostgres());
+		ClienteDAO dao = new ClienteDAO(manager);
 		
-		List<Cliente> lista = dao.listaNomeCodigoClientes();
-		//List<Cliente> lista = dao.listarClientes();
+		List<Cliente> lista = dao.listarClientes();
 		return lista;
 	}
 	
