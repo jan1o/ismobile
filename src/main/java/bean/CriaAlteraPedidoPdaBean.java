@@ -38,6 +38,7 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 	private List<Cliente> clientes;
 	private List<CondicaoPagamento> condicoesPg; 
 	private List<Produto> produtos;
+	
 	private List<ItemPedidoPda> itensPedidoPda; 
 	
 	private ItemPedidoPda item = new ItemPedidoPda();
@@ -46,7 +47,8 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 	
 	
 
-	public void prepara() {
+	public void prepara() throws Exception {
+		
 		
 		clientes = pdb.listaClientes();
 		condicoesPg = pdb.listaCondicaoPagamento();
@@ -73,6 +75,15 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 		
 		itensPedidoPda.remove(itemSelecionado);
 		
+	}
+	
+	public void DialogQuantidade() {
+		Map<String, Object> opcoes = new HashMap<>();
+		opcoes.put("modal", true);
+		opcoes.put("resizable", false);
+		opcoes.put("contentHeight", 500);
+		
+		RequestContext.getCurrentInstance().openDialog("DialogAddProduto", opcoes, null);
 	}
 	
 

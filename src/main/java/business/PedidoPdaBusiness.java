@@ -40,7 +40,7 @@ public class PedidoPdaBusiness {
 		return lista;
 	}
 	
-	public List<Cliente> listaClientes(){
+	public List<Cliente> listaClientes() throws Exception{
 		EntityManager manager = JpaUtil.getEntityManager();
 		ClienteDAO dao = new ClienteDAO(manager);
 		
@@ -80,8 +80,10 @@ public class PedidoPdaBusiness {
 		pedido.setNumero(v.getSequencia_pedido_pda() + 1);
 		pedido.setVendedor(vdao.getVendedorPorId(v.getCodigo()));
 		for(ItemPedidoPda i : pedido.getLista()) {
-			ItemPedidoPdaPK pk = new ItemPedidoPdaPK(pedido.getNumero(), pedido.getVendedor().getCodigo());
-			i.setPk(pk);
+			i.setNumero_pedido_pda(pedido.getNumero());
+			i.getVendedor().setCodigo(pedido.getVendedor().getCodigo());
+			//ItemPedidoPdaPK pk = new ItemPedidoPdaPK(pedido.getNumero(), pedido.getVendedor().getCodigo());
+			//i.setPk(pk);
 		}
 		
 		//Adicionar o novo pedido pda

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Quantidade</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="intech" name="estilo.css" />
+	<h:form id="frm">
+		<div class="ui-fluid">
+			<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:outputLabel value="Código:" />
+				<p:outputLabel value="#{criaAlteraPedidoPdaBean.item.produto.codigo" />
+
+				<p:outputLabel value="Descrição:" />
+				<p:outputLabel
+					value="#{criaAlteraPedidoPdaBean.item.produto.descricao" />
+
+				<p:outputLabel value="Qtd em Estoque:" />
+				<p:outputLabel
+					value="#{criaAlteraPedidoPdaBean.item.produto.quantidade" />
+
+				<p:outputLabel value="Valor:" />
+				<p:outputLabel value="#{criaAlteraPedidoPdaBean.item.produto.valor" />
+
+
+				<p:outputLabel value="Quantidade:" />
+				<p:inputText size="18"
+					value="#{criaAlteraPedidoPdaBean.item.quantidade}" />
+
+				<p:commandButton icon="ui-icon-check" value="Confirmar"
+					title="Confirmar" process="@this" update="@none" action="#{criaAlteraPedidoPdaBean.AdicionarProduto}">
+				</p:commandButton>
+
+			</h:panelGrid>
+
+		</div>
+	</h:form>
+</h:body>
+</html>

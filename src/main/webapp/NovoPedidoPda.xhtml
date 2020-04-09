@@ -97,7 +97,7 @@
 
 						<p:commandButton icon="ui-icon-circle-triangle-s"
 							value="adicionar" title="Adicionar" process="@this"
-							update="@none" action="teste">
+							update="@none" action="#{criaAlteraPedidoPdaBean.DialogQuantidade}">
 
 						</p:commandButton>
 
@@ -106,19 +106,19 @@
 				<div class="interno">
 					<h:panelGrid columns="1" cellpadding="5" >
 
-						<p:dataTable var="teste" value="Teste" style="width:600px" border="1" cellspacing="0" cellpadding="2"
+						<p:dataTable var="itensPedidoPda" value="#{criaAlteraPedidoPdaBean.itensPedidoPda}" style="width:600px" border="1" cellspacing="0" cellpadding="2"
 						paginator="true" rows="5" paginatorPosition="bottom">
 						
 							<p:column headerText="Produto" style="width:25%">
-								<h:outputText value="" />
+								<h:outputText value="#{itensPedidoPda.produto.descricao}" />
 							</p:column>
 
 							<p:column headerText="Quantidade" style="width:25%">
-								<h:outputText value="" />
+								<h:outputText value="#{itensPedidoPda.quantidade}" />
 							</p:column>
 
-							<p:column headerText="Preço" style="width:25%">
-								<h:outputText value="" />
+							<p:column headerText="valor Total" style="width:25%">
+								<h:outputText value="#{itensPedidoPda.ValorTotalProdutos}" />
 							</p:column>
 
 							<p:column headerText="Remover" style="width:12%">
