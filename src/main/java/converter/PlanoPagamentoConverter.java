@@ -35,7 +35,7 @@ public class PlanoPagamentoConverter implements Converter, Serializable {
 				//ClienteDAO clienteDao = new ClienteDAO(manager);
 				//retorno = clienteDao.porId(new Long(value));
 				PlanoPagamentoDAO dao = new PlanoPagamentoDAO(manager);
-				retorno = dao.listarPorId(Integer.getInteger(codigo));
+				retorno = dao.listarPorId(Integer.parseInt(codigo));
 			}
 			return retorno;
 		} finally {

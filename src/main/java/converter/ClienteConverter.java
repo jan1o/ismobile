@@ -36,7 +36,7 @@ public class ClienteConverter implements Converter, Serializable {
 			if (codigo != null && !"".equals(codigo)) {
 				//ClienteDAO clienteDao = new ClienteDAO(manager);
 				ClienteDAO clienteDao = new ClienteDAO(manager);
-				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
+				retorno = clienteDao.listarPorId(Integer.parseInt(codigo));
 			}
 		} finally {
 			manager.close();
