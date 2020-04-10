@@ -79,6 +79,7 @@
 
 					</h:panelGrid>
 				</div>
+				<h:form id="form2">
 				<div class="interno">
 					<h:panelGrid columns="3" cellpadding="5">
 
@@ -92,13 +93,15 @@
 						</p:selectOneMenu>
 
 						<p:commandButton icon="ui-icon-circle-triangle-s"
-							value="adicionar" title="Adicionar" process="produto"
+							value="adicionar" title="Adicionar" process="@this"
 							update="@none" action="#{criaAlteraPedidoPdaBean.DialogQuantidade}">
+							<f:ajax execute="form2" render="@form" />
 
 						</p:commandButton>
 
 					</h:panelGrid>
 				</div>
+				</h:form>
 				<div class="interno">
 					<h:panelGrid columns="1" cellpadding="5" >
 
@@ -128,6 +131,7 @@
 
 					</h:panelGrid>
 				</div>
+				
 			</div>
 		</h:form>
 
