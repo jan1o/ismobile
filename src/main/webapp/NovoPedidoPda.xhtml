@@ -24,14 +24,18 @@
 							style="width:165px" filter="true" filterMatchMode="startsWith"
 							label="Cliente:">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientesC}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientes}" 
+							var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
 						</p:selectOneMenu>
 
 
 
 						<p:outputLabel for="data" value="Data:" />
 						<p:calendar id="data" size="18"
-							value="#{CriaAlteraPedidoPdaBean.pedido.data}" />
+							value="#{criaAlteraPedidoPdaBean.pedido.data}" pattern="dd/MM/yyyy" mode="popup">
+							<f:convertDateTime type="date"  dateStyle="short" pattern="dd/MM/yyyy" />
+							
+							</p:calendar>
 
 						<p:outputLabel value="Condição de Pagamento:" for="condicaoPagamento" />
 						<p:selectOneMenu id="condicaoPagamento"
@@ -39,7 +43,8 @@
 							style="width:165px" filter="true" filterMatchMode="startsWith"
 							label="Cliente:">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.condiPagamentoC}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
+							var="condPG" itemValue="#{condPG}" itemLabel="#{condPG.nome}" />
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação:" for="obs" />
@@ -73,7 +78,7 @@
 						<p:outputLabel />
 
 						<p:commandButton value="Salvar" title="Salvar" process="@this"
-							update="@none" action="teste">
+							update="@none" action="#{criaAlteraPedidoPdaBean.Salvar}">
 
 						</p:commandButton>
 
@@ -85,51 +90,50 @@
 
 
 						<p:selectOneMenu id="produto"
-							value="#{criaAlteraPedidoPdaBean.item.produto}" dynamic="true"
-							style="width:125px" filter="true" filterMatchMode="startsWith"
-							label="Todos os Produtos">
+							value="#{criaAlteraPedidoPdaBean.item.produto}"
+							style="width:100px" filter="true" filterMatchMode="startsWith"
+							label="produto">
 							<f:selectItem itemLabel="Produtos" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.produtosC}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.produtos}" 
+							var="produto" itemValue="#{produto}" itemLabel="#{produto.descricao}"  />
 						</p:selectOneMenu>
 
 						<p:commandButton icon="ui-icon-circle-triangle-s"
-							value="adicionar" title="Adicionar" process="@this"
-							update="@none" action="#{criaAlteraPedidoPdaBean.DialogQuantidade}">
-							<f:ajax execute="form2" render="@form" />
+							value="adicionar" title="Adicionar" action="#{criaAlteraPedidoPdaBean.DialogQuantidade}">
 
 						</p:commandButton>
 
 					</h:panelGrid>
 				</div>
 				</h:form>
+				
 				<div class="interno">
-					<h:panelGrid columns="1" cellpadding="5" >
+				<h:form id ="frm3">
 
-						<p:dataTable var="itensPedidoPda" value="#{criaAlteraPedidoPdaBean.itensPedidoPda}" style="width:600px" border="1" cellspacing="0" cellpadding="2"
+						<p:dataTable id="tabela2" var="itens" value="#{criaAlteraPedidoPdaBean.itensPedidoPda}" style="width:600px" border="1" cellspacing="0" cellpadding="2"
 						paginator="true" rows="5" paginatorPosition="bottom">
 						
 							<p:column headerText="Produto" style="width:25%">
-								<h:outputText value="#{itensPedidoPda.produto.descricao}" />
+								<h:outputText value="#{itens.produto.descricao}" />
 							</p:column>
 
 							<p:column headerText="Quantidade" style="width:25%">
-								<h:outputText value="#{itensPedidoPda.quantidade}" />
+								<h:outputText value="#{itens.quantidade}" />
 							</p:column>
 
 							<p:column headerText="valor Total" style="width:25%">
-								<h:outputText value="#{itensPedidoPda.ValorTotalProdutos}" />
+								<h:outputText value="teste" />
 							</p:column>
 
 							<p:column headerText="Remover" style="width:12%">
 								<p:commandButton icon="ui-icon-trash"
 								action="teste"
-								update="@form" >
+								update="@none" >
 							</p:commandButton>
 								
 							</p:column>
 						</p:dataTable>
-
-					</h:panelGrid>
+						</h:form>
 				</div>
 				
 			</div>

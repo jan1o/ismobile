@@ -39,25 +39,19 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 	private List<CondicaoPagamento> condicoesPg;
 	private List<Produto> produtos;
 
-	private List<SelectItem> clientesC;
-	private List<SelectItem> produtosC;
-	private List<SelectItem> condiPagamentoC;
+	private List<ItemPedidoPda> itensPedidoPda = new ArrayList<>();
 
-	private List<ItemPedidoPda> itensPedidoPda;
-
-	private ItemPedidoPda item = new ItemPedidoPda();
+	private ItemPedidoPda item; 
 
 	// ************************************************************
 
 	public void prepara() throws Exception {
-
+		
+		item = new ItemPedidoPda();
 		clientes = pdb.listaClientes();
 		condicoesPg = pdb.listaCondicaoPagamento();
 		produtos = pdb.listaProduto();
 
-		clientesC = ClientesCombo();
-		produtosC = ProdutoCombo();
-		condiPagamentoC = CondPagamentoCombo();
 
 	}
 
@@ -69,9 +63,15 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 	}
 
 	public void AdicionarProduto() {
+		
+		System.out.println("teste");
+		System.out.println(item.getQuantidade() + " < quantidade");
 
 		itensPedidoPda.add(item);
-		// item = new ItemPedidoPda();
+		item = new ItemPedidoPda();
+		
+		System.out.println(itensPedidoPda.get(0).getQuantidade());
+		RequestContext.getCurrentInstance().closeDialog("DialogAddProduto");
 
 	}
 
@@ -82,40 +82,13 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 	}
 
 	public void DialogQuantidade() {
-		System.out.println("******************* TESTE**********");
 		Map<String, Object> opcoes = new HashMap<>();
 		opcoes.put("modal", true);
 		opcoes.put("resizable", false);
-		opcoes.put("contentHeight", 500);
+		opcoes.put("contentHeight", 250);
+		opcoes.put("contentWidth", 300);
 
 		RequestContext.getCurrentInstance().openDialog("DialogAddProduto", opcoes, null);
-	}
-
-	public List<SelectItem> ClientesCombo() {
-		List<SelectItem> items = new ArrayList<SelectItem>();
-		for (Cliente c : this.clientes) {
-			// observem que o value do meu SelectItem é a própria entidade
-			items.add(new SelectItem(c, c.getNome()));
-		}
-		return items;
-	}
-
-	public List<SelectItem> ProdutoCombo() {
-		List<SelectItem> items = new ArrayList<SelectItem>();
-		for (Produto p : this.produtos) {
-			// observem que o value do meu SelectItem é a própria entidade
-			items.add(new SelectItem(p, p.getDescricao()));
-		}
-		return items;
-	}
-
-	public List<SelectItem> CondPagamentoCombo() {
-		List<SelectItem> items = new ArrayList<SelectItem>();
-		for (CondicaoPagamento c : this.condicoesPg) {
-			// observem que o value do meu SelectItem é a própria entidade
-			items.add(new SelectItem(c, c.getNome()));
-		}
-		return items;
 	}
 
 	public List<Cliente> getClientes() {
@@ -182,30 +155,5 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 		this.itemSelecionado = itemSelecionado;
 	}
 
-	public List<SelectItem> getClientesC() {
-		return clientesC;
-	}
-
-	public void setClientesC(List<SelectItem> clientesC) {
-		this.clientesC = clientesC;
-	}
-
-	public List<SelectItem> getProdutosC() {
-		return produtosC;
-	}
-
-	public void setProdutosC(List<SelectItem> produtosC) {
-		this.produtosC = produtosC;
-	}
-
-	public List<SelectItem> getCondiPagamentoC() {
-		return condiPagamentoC;
-	}
-
-	public void setCondiPagamentoC(List<SelectItem> condiPagamentoC) {
-		this.condiPagamentoC = condiPagamentoC;
-	}
-	
-	
 
 }

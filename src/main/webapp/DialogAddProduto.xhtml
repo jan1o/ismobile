@@ -27,15 +27,18 @@
 					value="#{criaAlteraPedidoPdaBean.item.produto.quantidade}" />
 
 				<p:outputLabel value="Valor:" />
-				<p:outputLabel value="#{criaAlteraPedidoPdaBean.item.produto.valor}" />
+				<p:outputLabel value="#{criaAlteraPedidoPdaBean.item.produto.valor}">
+				<f:convertNumber type="currency" locale="pt_BR" />
+				</p:outputLabel>
 
 
 				<p:outputLabel value="Quantidade:" />
 				<p:inputText size="18"
-					value="#{criaAlteraPedidoPdaBean.item.quantidade}" />
+					value="#{criaAlteraPedidoPdaBean.item.quantidade}" id = "qtd" required ="true" label = "quantidade"/>
+					 
 
 				<p:commandButton icon="ui-icon-check" value="Confirmar"
-					title="Confirmar" process="@this" update="@none" action="#{criaAlteraPedidoPdaBean.AdicionarProduto}">
+					title="Confirmar" update="@none" action="#{criaAlteraPedidoPdaBean.AdicionarProduto}">
 				</p:commandButton>
 
 			</h:panelGrid>
