@@ -19,13 +19,12 @@
 					<h:panelGrid columns="2" cellpadding="5">
 
 						<p:outputLabel value="Cliente:" />
-						<p:selectOneMenu id="cliente"
+						<p:selectOneMenu
 							value="#{criaAlteraPedidoPdaBean.pedido.cliente}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
 							label="Cliente:">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientes}"
-								var="clnt" itemValue="#{cliente}" itemLabel="#{cliente.nome}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientesC}" />
 						</p:selectOneMenu>
 
 
@@ -40,8 +39,7 @@
 							style="width:165px" filter="true" filterMatchMode="startsWith"
 							label="Cliente:">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
-								var="clnt" itemValue="#{condicaoPagamento}" itemLabel="#{condicaoPagamento.nome}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.condiPagamentoC}" />
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação:" for="obs" />
@@ -61,13 +59,13 @@
 						</p:selectOneRadio>
 
 						<p:outputLabel for="consignado" value="Consignado:" />
-						<p:selectOneRadio id="consignado" value="teste}" converter="javax.faces.Integer">
+						<p:selectOneRadio id="consignado" value="#{criaAlteraPedidoPdaBean.pedido.consignado}" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="tipoDfe" value="Tipo DF-e:" />
-						<p:selectOneRadio id="tipoDfe" value="teste" converter="javax.faces.Integer">
+						<p:selectOneRadio id="tipoDfe" value="#{criaAlteraPedidoPdaBean.pedido.tipo_dfe}" converter="javax.faces.Integer">
 							<f:selectItem itemLabel="DF-e" itemValue="1" />
 							<f:selectItem itemLabel="Outro" itemValue="0" />
 						</p:selectOneRadio>
@@ -90,13 +88,11 @@
 							style="width:125px" filter="true" filterMatchMode="startsWith"
 							label="Todos os Produtos">
 							<f:selectItem itemLabel="Produtos" noSelectionOption="true" />
-							<f:selectItems value="#{criaAlteraPedidoPdaBean.produtos}"
-								var="clnt" itemValue="#{produto}"
-								itemLabel="#{produto.descricao}" />
+							<f:selectItems value="#{criaAlteraPedidoPdaBean.produtosC}" />
 						</p:selectOneMenu>
 
 						<p:commandButton icon="ui-icon-circle-triangle-s"
-							value="adicionar" title="Adicionar" process="@this"
+							value="adicionar" title="Adicionar" process="produto"
 							update="@none" action="#{criaAlteraPedidoPdaBean.DialogQuantidade}">
 
 						</p:commandButton>

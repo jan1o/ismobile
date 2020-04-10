@@ -49,7 +49,7 @@ public class PlanoPagamentoConverter implements Converter, Serializable {
 	public String getAsString(FacesContext context, UIComponent component, Object objeto) {
 		// TODO Auto-generated method stub
 		if(objeto != null) {
-			return Integer.toString(((Produto) objeto).getCodigo());
+			return Integer.toString(((CondicaoPagamento) objeto).getCodigo());
 		}
 		return null;
 	}

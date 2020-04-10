@@ -17,9 +17,7 @@ import util.JpaUtil;
 @FacesConverter(forClass = Produto.class)
 public class ProdutoConverter implements Converter, Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 

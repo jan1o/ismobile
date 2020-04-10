@@ -38,9 +38,6 @@ public class ClienteConverter implements Converter, Serializable {
 				ClienteDAO clienteDao = new ClienteDAO(manager);
 				retorno = clienteDao.listarPorId(Integer.getInteger(codigo));
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			manager.close();
 		}

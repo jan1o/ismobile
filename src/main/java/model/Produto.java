@@ -14,14 +14,14 @@ import javax.validation.constraints.NotNull;
 import biblioteca.InterfaceObjeto;
 
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto implements Comparable, InterfaceObjeto {
-	
+
 	@Id
 	@NotNull
 	@Column
 	private int codigo; // numeric(10,0) NOT NULL,
-	
+
 	@NotNull
 	@Column
 	private String descricao; // character varying(70) NOT NULL,
@@ -37,46 +37,46 @@ public class Produto implements Comparable, InterfaceObjeto {
 	@NotNull
 	@Column
 	private String sigla_unidade; // character(3) NOT NULL,
-	
+
 	@Column
 	private String codigo_barra; // character varying(40),
-	
+
 	@Column
-	private double peso_liquido; // numeric(8,3),
-	
+	private Double peso_liquido; // numeric(8,3),
+
 	@Column
-	private double peso_bruto; // numeric(8,3),
-	
+	private Double peso_bruto; // numeric(8,3),
+
 	@Column
-	private double qtd_embalagem; // numeric(6,2),
+	private Double qtd_embalagem; // numeric(6,2),
 
 	@NotNull
 	@Column
-	private double comissao; // numeric(8,2) NOT NULL DEFAULT 0,
+	private Double comissao; // numeric(8,2) NOT NULL DEFAULT 0,
 
 	@NotNull
 	@Column
-	private double valor; // numeric(10,4) NOT NULL DEFAULT 0,
+	private Double valor; // numeric(10,4) NOT NULL DEFAULT 0,
 
 	@NotNull
 	@Column
-	private double custo; // numeric(10,2) NOT NULL DEFAULT 0,
-	
+	private Double custo; // numeric(10,2) NOT NULL DEFAULT 0,
+
 	@Column
-	private double quantidade; // numeric(13,3) DEFAULT 0,
-	
+	private Double quantidade; // numeric(13,3) DEFAULT 0,
+
 	@Column
-	private double qtd_deposito2; // numeric(13,3) DEFAULT 0,
-	
+	private Double qtd_deposito2; // numeric(13,3) DEFAULT 0,
+
 	@Column
-	private double qtd_avaria; // numeric(13,3) DEFAULT 0,
-	
+	private Double qtd_avaria; // numeric(13,3) DEFAULT 0,
+
 	@Column
-	private double qtd_vencida; // numeric(13,3) DEFAULT 0,
+	private Double qtd_vencida; // numeric(13,3) DEFAULT 0,
 
 	@NotNull
 	@Column
-	private double codigo_tipo_produto; // numeric(6,0) NOT NULL,
+	private Double codigo_tipo_produto; // numeric(6,0) NOT NULL,
 
 	@NotNull
 	@Column
@@ -101,116 +101,116 @@ public class Produto implements Comparable, InterfaceObjeto {
 	@NotNull
 	@Column
 	private int codigo_modelo; // numeric(3,0) NOT NULL,
-	
+
 	@Column
-	private double margem_lucro; // numeric(8,2),
-	
+	private Double margem_lucro; // numeric(8,2),
+
 	@Column
-	private double preco_max; // numeric(12,2),
-	
+	private Double preco_max; // numeric(12,2),
+
 	@Column
 	private String psicotropico; // character varying(10),
-	
+
 	@Column
 	private String referencia; // character varying(20),
-	
+
 	@Column
 	private String codigo_dcb; // character varying(20),
-	
+
 	@Column
 	private String licenca; // character varying(20),
-	
+
 	@Column
-	private double valor_compra; // numeric(10,4) DEFAULT 0,
-	
+	private Double valor_compra; // numeric(10,4) DEFAULT 0,
+
 	@Column
-	private double estoque_minimo; // numeric(13,3) DEFAULT 0,
-	
+	private Double estoque_minimo; // numeric(13,3) DEFAULT 0,
+
 	@Column
 	private Date data_ultima_entrada; // timestamp without time zone,
-	
+
 	@Column
 	private Date data_zerou; // timestamp without time zone,
-	
+
 	@Column
 	private String codigo_ncm; // character(8),
-	
+
 	@Column
 	private Date alterado; // timestamp without time zone DEFAULT now(),
-	
+
 	@Column
 	private String alterado_por; // character varying(50) DEFAULT "current_user"(),
-	
+
 	@Column
-	private double valor_minimo; // numeric(12,2) DEFAULT 0,
-	
+	private Double valor_minimo; // numeric(12,2) DEFAULT 0,
+
 	@Column
 	private String informacao_adicional; // character varying(500),
-	
+
 	@Column
 	private String pratileira; // character varying(10),
-	
+
 	@Column
 	private String bandeja; // character varying(10),
-	
+
 	@Column
-	private double valor_atacado_varejo; // numeric(8,4) DEFAULT 0,
-	
+	private Double valor_atacado_varejo; // numeric(8,4) DEFAULT 0,
+
 	@Column
-	private double qtd_atacado_varejo; // numeric(13,3) DEFAULT 0,
-	
+	private Double qtd_atacado_varejo; // numeric(13,3) DEFAULT 0,
+
 	@Column
-	private double porcentagem_custo; // numeric(8,2) DEFAULT 0,
-	
+	private Double porcentagem_custo; // numeric(8,2) DEFAULT 0,
+
 	@Column
-	private double porcentagem_valor_minimo; // numeric(8,2) DEFAULT 0,
-	
+	private Double porcentagem_valor_minimo; // numeric(8,2) DEFAULT 0,
+
 	@Column
 	private String gtin; // character varying(14),
-	
+
 	@Column
 	private String iat; // character(1) DEFAULT 'A'::bpchar,
-	
+
 	@Column
 	private String ippt; // character(1) DEFAULT 'T'::bpchar,
 
 	@NotNull
 	@Column
 	private BigInteger codigo_natureza_receita; // numeric(10,0) NOT NULL DEFAULT 9999999999::bigint,
-	
+
 	@Column
 	private int consumo_proprio; // numeric(1,0) DEFAULT 0,
-	
+
 	@Column
 	private String hash_tripa; // character varying(32),
-	
+
 	@Column
-	private int hash_incremento; // numeric(10,0),
-	
+	private Integer hash_incremento; // numeric(10,0),
+
 	@Column
 	private String foto; // character varying(100),
-	
+
 	@Column
 	private int sem_giro; // numeric(1,0) DEFAULT 0,
-	
+
 	@Column
 	private Date validade; // date,
-	
+
 	@Column
-	private double aliquota_nacional_ibpt; // numeric(12,2) DEFAULT 0,
-	
+	private Double aliquota_nacional_ibpt; // numeric(12,2) DEFAULT 0,
+
 	@Column
 	private int kit; // numeric(1,0) DEFAULT 0,
-	
+
 	@Column
 	private String status_alteracao_valor; // character(1) DEFAULT '='::bpchar,
-	
+
 	@Column
 	private Date data_ultima_venda; // timestamp without time zone,
-	
+
 	@Column
 	private String tamanho; // character varying(4) DEFAULT ''::character varying,
-	
+
 	@Column
 	private String codigo_anp; // character(9),
 
@@ -218,68 +218,67 @@ public class Produto implements Comparable, InterfaceObjeto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int codigo_mercadoria; // numeric(10,0) NOT NULL DEFAULT nextval('codigo_mercadoria'::regclass),
-	
+
 	@Column
 	private Date cadastrado; // timestamp without time zone,
-	
+
 	@Column
 	private String cadastrado_por; // character varying(30),
-	
+
 	@Column
-	private double quantidade_deposito; // numeric(13,3) DEFAULT 0,
-	
+	private Double quantidade_deposito; // numeric(13,3) DEFAULT 0,
+
 	@Column
 	private String cest; // character(7),
-	
+
 	@Column
 	private int controlar_estoque; // numeric(1,0) DEFAULT 1,
-	
+
 	@Column
 	private int pesagem; // numeric(1,0) DEFAULT 0,
-	
+
 	@Column
-	private double valor_bonificacao; // numeric(18,2) DEFAULT 0,
-	
+	private Double valor_bonificacao; // numeric(18,2) DEFAULT 0,
+
 	@Column
 	private String foto_web; // text DEFAULT 'http://www.intechsistemas.com.br/images/produto.jpg'::text,
-	
+
 	@Column
-	private double pontos; // numeric(8,2) DEFAULT 0,
-	
+	private Double pontos; // numeric(8,2) DEFAULT 0,
+
 	@Column
-	private double meta; // numeric(10,3),
-	
+	private Double meta; // numeric(10,3),
+
 	@Column
 	private Date data_zerou_dep2; // timestamp without time zone,
-	
+
 	@Column
-	private double dados_frete_entrada; // numeric(8,2) DEFAULT 0,
-	
+	private Double dados_frete_entrada; // numeric(8,2) DEFAULT 0,
+
 	@Column
-	private double dados_icms_entrada; // numeric(8,2) DEFAULT 0,
-	
+	private Double dados_icms_entrada; // numeric(8,2) DEFAULT 0,
+
 	@Column
-	private double dados_ipi_entrada; // numeric(8,2) DEFAULT 0,
-	
+	private Double dados_ipi_entrada; // numeric(8,2) DEFAULT 0,
+
 	@Column
 	private int id_aliquota_diferenciada; // numeric(3,0) DEFAULT 0,
-	
+
 	@Column
-	private double qtd_falta; // numeric(13,3) DEFAULT 0,
-	
+	private Double qtd_falta; // numeric(13,3) DEFAULT 0,
+
 	@Column
-	private double valor_compra_dolar; // numeric(8,2),
-	
+	private Double valor_compra_dolar; // numeric(8,2),
+
 	@Column
-	private double valor_frete; // numeric(8,2),
-	
+	private Double valor_frete; // numeric(8,2),
+
 	@Column
 	private String und_tributavel; // character(3),
-	
+
 	@Column
-	private double qtd_tributavel; // numeric(8,2) DEFAULT 1,
-	
-	
+	private Double qtd_tributavel; // numeric(8,2) DEFAULT 1,
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -328,91 +327,91 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.codigo_barra = codigo_barra;
 	}
 
-	public double getPeso_liquido() {
+	public Double getPeso_liquido() {
 		return peso_liquido;
 	}
 
-	public void setPeso_liquido(double peso_liquido) {
+	public void setPeso_liquido(Double peso_liquido) {
 		this.peso_liquido = peso_liquido;
 	}
 
-	public double getPeso_bruto() {
+	public Double getPeso_bruto() {
 		return peso_bruto;
 	}
 
-	public void setPeso_bruto(double peso_bruto) {
+	public void setPeso_bruto(Double peso_bruto) {
 		this.peso_bruto = peso_bruto;
 	}
 
-	public double getQtd_embalagem() {
+	public Double getQtd_embalagem() {
 		return qtd_embalagem;
 	}
 
-	public void setQtd_embalagem(double qtd_embalagem) {
+	public void setQtd_embalagem(Double qtd_embalagem) {
 		this.qtd_embalagem = qtd_embalagem;
 	}
 
-	public double getComissao() {
+	public Double getComissao() {
 		return comissao;
 	}
 
-	public void setComissao(double comissao) {
+	public void setComissao(Double comissao) {
 		this.comissao = comissao;
 	}
 
-	public double getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
-	public double getCusto() {
+	public Double getCusto() {
 		return custo;
 	}
 
-	public void setCusto(double custo) {
+	public void setCusto(Double custo) {
 		this.custo = custo;
 	}
 
-	public double getQuantidade() {
+	public Double getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(double quantidade) {
+	public void setQuantidade(Double quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public double getQtd_deposito2() {
+	public Double getQtd_deposito2() {
 		return qtd_deposito2;
 	}
 
-	public void setQtd_deposito2(double qtd_deposito2) {
+	public void setQtd_deposito2(Double qtd_deposito2) {
 		this.qtd_deposito2 = qtd_deposito2;
 	}
 
-	public double getQtd_avaria() {
+	public Double getQtd_avaria() {
 		return qtd_avaria;
 	}
 
-	public void setQtd_avaria(double qtd_avaria) {
+	public void setQtd_avaria(Double qtd_avaria) {
 		this.qtd_avaria = qtd_avaria;
 	}
 
-	public double getQtd_vencida() {
+	public Double getQtd_vencida() {
 		return qtd_vencida;
 	}
 
-	public void setQtd_vencida(double qtd_vencida) {
+	public void setQtd_vencida(Double qtd_vencida) {
 		this.qtd_vencida = qtd_vencida;
 	}
 
-	public double getCodigo_tipo_produto() {
+	public Double getCodigo_tipo_produto() {
 		return codigo_tipo_produto;
 	}
 
-	public void setCodigo_tipo_produto(double codigo_tipo_produto) {
+	public void setCodigo_tipo_produto(Double codigo_tipo_produto) {
 		this.codigo_tipo_produto = codigo_tipo_produto;
 	}
 
@@ -464,19 +463,19 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.codigo_modelo = codigo_modelo;
 	}
 
-	public double getMargem_lucro() {
+	public Double getMargem_lucro() {
 		return margem_lucro;
 	}
 
-	public void setMargem_lucro(double margem_lucro) {
+	public void setMargem_lucro(Double margem_lucro) {
 		this.margem_lucro = margem_lucro;
 	}
 
-	public double getPreco_max() {
+	public Double getPreco_max() {
 		return preco_max;
 	}
 
-	public void setPreco_max(double preco_max) {
+	public void setPreco_max(Double preco_max) {
 		this.preco_max = preco_max;
 	}
 
@@ -512,19 +511,19 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.licenca = licenca;
 	}
 
-	public double getValor_compra() {
+	public Double getValor_compra() {
 		return valor_compra;
 	}
 
-	public void setValor_compra(double valor_compra) {
+	public void setValor_compra(Double valor_compra) {
 		this.valor_compra = valor_compra;
 	}
 
-	public double getEstoque_minimo() {
+	public Double getEstoque_minimo() {
 		return estoque_minimo;
 	}
 
-	public void setEstoque_minimo(double estoque_minimo) {
+	public void setEstoque_minimo(Double estoque_minimo) {
 		this.estoque_minimo = estoque_minimo;
 	}
 
@@ -568,11 +567,11 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.alterado_por = alterado_por;
 	}
 
-	public double getValor_minimo() {
+	public Double getValor_minimo() {
 		return valor_minimo;
 	}
 
-	public void setValor_minimo(double valor_minimo) {
+	public void setValor_minimo(Double valor_minimo) {
 		this.valor_minimo = valor_minimo;
 	}
 
@@ -600,35 +599,35 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.bandeja = bandeja;
 	}
 
-	public double getValor_atacado_varejo() {
+	public Double getValor_atacado_varejo() {
 		return valor_atacado_varejo;
 	}
 
-	public void setValor_atacado_varejo(double valor_atacado_varejo) {
+	public void setValor_atacado_varejo(Double valor_atacado_varejo) {
 		this.valor_atacado_varejo = valor_atacado_varejo;
 	}
 
-	public double getQtd_atacado_varejo() {
+	public Double getQtd_atacado_varejo() {
 		return qtd_atacado_varejo;
 	}
 
-	public void setQtd_atacado_varejo(double qtd_atacado_varejo) {
+	public void setQtd_atacado_varejo(Double qtd_atacado_varejo) {
 		this.qtd_atacado_varejo = qtd_atacado_varejo;
 	}
 
-	public double getPorcentagem_custo() {
+	public Double getPorcentagem_custo() {
 		return porcentagem_custo;
 	}
 
-	public void setPorcentagem_custo(double porcentagem_custo) {
+	public void setPorcentagem_custo(Double porcentagem_custo) {
 		this.porcentagem_custo = porcentagem_custo;
 	}
 
-	public double getPorcentagem_valor_minimo() {
+	public Double getPorcentagem_valor_minimo() {
 		return porcentagem_valor_minimo;
 	}
 
-	public void setPorcentagem_valor_minimo(double porcentagem_valor_minimo) {
+	public void setPorcentagem_valor_minimo(Double porcentagem_valor_minimo) {
 		this.porcentagem_valor_minimo = porcentagem_valor_minimo;
 	}
 
@@ -680,11 +679,11 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.hash_tripa = hash_tripa;
 	}
 
-	public int getHash_incremento() {
+	public Integer getHash_incremento() {
 		return hash_incremento;
 	}
 
-	public void setHash_incremento(int hash_incremento) {
+	public void setHash_incremento(Integer hash_incremento) {
 		this.hash_incremento = hash_incremento;
 	}
 
@@ -712,11 +711,11 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.validade = validade;
 	}
 
-	public double getAliquota_nacional_ibpt() {
+	public Double getAliquota_nacional_ibpt() {
 		return aliquota_nacional_ibpt;
 	}
 
-	public void setAliquota_nacional_ibpt(double aliquota_nacional_ibpt) {
+	public void setAliquota_nacional_ibpt(Double aliquota_nacional_ibpt) {
 		this.aliquota_nacional_ibpt = aliquota_nacional_ibpt;
 	}
 
@@ -784,11 +783,11 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.cadastrado_por = cadastrado_por;
 	}
 
-	public double getQuantidade_deposito() {
+	public Double getQuantidade_deposito() {
 		return quantidade_deposito;
 	}
 
-	public void setQuantidade_deposito(double quantidade_deposito) {
+	public void setQuantidade_deposito(Double quantidade_deposito) {
 		this.quantidade_deposito = quantidade_deposito;
 	}
 
@@ -816,11 +815,11 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.pesagem = pesagem;
 	}
 
-	public double getValor_bonificacao() {
+	public Double getValor_bonificacao() {
 		return valor_bonificacao;
 	}
 
-	public void setValor_bonificacao(double valor_bonificacao) {
+	public void setValor_bonificacao(Double valor_bonificacao) {
 		this.valor_bonificacao = valor_bonificacao;
 	}
 
@@ -832,19 +831,19 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.foto_web = foto_web;
 	}
 
-	public double getPontos() {
+	public Double getPontos() {
 		return pontos;
 	}
 
-	public void setPontos(double pontos) {
+	public void setPontos(Double pontos) {
 		this.pontos = pontos;
 	}
 
-	public double getMeta() {
+	public Double getMeta() {
 		return meta;
 	}
 
-	public void setMeta(double meta) {
+	public void setMeta(Double meta) {
 		this.meta = meta;
 	}
 
@@ -856,27 +855,27 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.data_zerou_dep2 = data_zerou_dep2;
 	}
 
-	public double getDados_frete_entrada() {
+	public Double getDados_frete_entrada() {
 		return dados_frete_entrada;
 	}
 
-	public void setDados_frete_entrada(double dados_frete_entrada) {
+	public void setDados_frete_entrada(Double dados_frete_entrada) {
 		this.dados_frete_entrada = dados_frete_entrada;
 	}
 
-	public double getDados_icms_entrada() {
+	public Double getDados_icms_entrada() {
 		return dados_icms_entrada;
 	}
 
-	public void setDados_icms_entrada(double dados_icms_entrada) {
+	public void setDados_icms_entrada(Double dados_icms_entrada) {
 		this.dados_icms_entrada = dados_icms_entrada;
 	}
 
-	public double getDados_ipi_entrada() {
+	public Double getDados_ipi_entrada() {
 		return dados_ipi_entrada;
 	}
 
-	public void setDados_ipi_entrada(double dados_ipi_entrada) {
+	public void setDados_ipi_entrada(Double dados_ipi_entrada) {
 		this.dados_ipi_entrada = dados_ipi_entrada;
 	}
 
@@ -888,27 +887,27 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.id_aliquota_diferenciada = id_aliquota_diferenciada;
 	}
 
-	public double getQtd_falta() {
+	public Double getQtd_falta() {
 		return qtd_falta;
 	}
 
-	public void setQtd_falta(double qtd_falta) {
+	public void setQtd_falta(Double qtd_falta) {
 		this.qtd_falta = qtd_falta;
 	}
 
-	public double getValor_compra_dolar() {
+	public Double getValor_compra_dolar() {
 		return valor_compra_dolar;
 	}
 
-	public void setValor_compra_dolar(double valor_compra_dolar) {
+	public void setValor_compra_dolar(Double valor_compra_dolar) {
 		this.valor_compra_dolar = valor_compra_dolar;
 	}
 
-	public double getValor_frete() {
+	public Double getValor_frete() {
 		return valor_frete;
 	}
 
-	public void setValor_frete(double valor_frete) {
+	public void setValor_frete(Double valor_frete) {
 		this.valor_frete = valor_frete;
 	}
 
@@ -920,15 +919,14 @@ public class Produto implements Comparable, InterfaceObjeto {
 		this.und_tributavel = und_tributavel;
 	}
 
-	public double getQtd_tributavel() {
+	public Double getQtd_tributavel() {
 		return qtd_tributavel;
 	}
 
-	public void setQtd_tributavel(double qtd_tributavel) {
+	public void setQtd_tributavel(Double qtd_tributavel) {
 		this.qtd_tributavel = qtd_tributavel;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -962,5 +960,5 @@ public class Produto implements Comparable, InterfaceObjeto {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }
