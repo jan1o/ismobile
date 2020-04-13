@@ -1,6 +1,7 @@
 package util;
 
 import model.Configuracao;
+import model.PedidoPda;
 
 // Essa classe é destinada a implementação de métodos utilitários
 public class Utilitarios {
@@ -38,4 +39,5 @@ public class Utilitarios {
 		config.setSenhaDB("123");
 		return config;
 	}
+	
 }
