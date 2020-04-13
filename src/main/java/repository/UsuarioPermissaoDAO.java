@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import model.Configuracao;
 import model.Produto;
@@ -28,6 +30,7 @@ public class UsuarioPermissaoDAO {
 	
 	//Metodo para verificar os dados do vendedor pelo seu login de usuario passados pela secao
 	public Vendedor getDadosVendedor(String login) throws SQLException {
+		List<Vendedor> lv = new ArrayList<Vendedor>();
 		Vendedor v;
 		try { 
 			
@@ -44,19 +47,20 @@ public class UsuarioPermissaoDAO {
 			listarStatement.setString(1, login);	
 
 			ResultSet rs = listarStatement.executeQuery();
-			
+			if(rs.next()) {
 			v = new Vendedor();
 			v.setCodigo(rs.getInt(1));
 			v.setNome(rs.getString(2));
 			v.setSequencia_pedido_pda(rs.getInt(3));
-
+			lv.add(v);
+			}
 			rs.close();
 			listarStatement.close();
 
 		} catch (Exception e) {
 			throw new SQLException(e.getMessage());
 		}
-		return v;
+		return lv.get(0);
 	}
 	
 	public void updateSequenciaPedidoPda(Vendedor v) throws SQLException {
