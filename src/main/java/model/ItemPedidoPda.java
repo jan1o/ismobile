@@ -42,8 +42,6 @@ public class ItemPedidoPda implements Comparable, Serializable {
 	@Column
 	private Double valor; // numeric(18,4),
 
-	
-
 	public ItemPedidoPda() {
 
 	}
@@ -54,6 +52,15 @@ public class ItemPedidoPda implements Comparable, Serializable {
 		this.quantidade = quantidade;
 		this.valor = valor;
 	}
+
+	public double valorTotal() {
+		double valor2 = 0.0;
+		
+		valor2 = this.quantidade * this.produto.getValor();
+		
+		return valor2;
+	}
+
 	public int getQuantidade() {
 		return quantidade;
 	}

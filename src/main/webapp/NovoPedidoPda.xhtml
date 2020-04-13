@@ -12,17 +12,18 @@
 	<ui:define name="corpo">
 
 		<h1>Criar Novo Pedido</h1>
-		<h:form id="frm">
 			<div class="ui-fluid" id="externo">
 				<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+				
 				<div class="interno">
+				<h:form id="frm">
 					<h:panelGrid columns="2" cellpadding="5">
 
 						<p:outputLabel value="Cliente:" />
 						<p:selectOneMenu
 							value="#{criaAlteraPedidoPdaBean.pedido.cliente}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
-							label="Cliente:">
+							label="Cliente:" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientes}" 
 							var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
@@ -32,7 +33,7 @@
 
 						<p:outputLabel for="data" value="Data:" />
 						<p:calendar id="data" size="18"
-							value="#{criaAlteraPedidoPdaBean.pedido.data}" pattern="dd/MM/yyyy" mode="popup">
+							value="#{criaAlteraPedidoPdaBean.pedido.data}" pattern="dd/MM/yyyy" mode="popup" required ="true">
 							<f:convertDateTime type="date"  dateStyle="short" pattern="dd/MM/yyyy" />
 							
 							</p:calendar>
@@ -41,36 +42,36 @@
 						<p:selectOneMenu id="condicaoPagamento"
 							value="#{criaAlteraPedidoPdaBean.pedido.condicaoPagamento}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
-							label="Cliente:">
+							label="condPG:" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
 							var="condPG" itemValue="#{condPG}" itemLabel="#{condPG.nome}" />
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação:" for="obs" />
-						<p:inputTextarea id="obs" size="150" value="#{criaAlteraPedidoPdaBean.pedido.observacao}" />
+						<p:inputTextarea id="obs" size="150" value="#{criaAlteraPedidoPdaBean.pedido.observacao}" required ="true"/>
 
 
 						<p:outputLabel for="retirado" value="Retirado:" />
-						<p:selectOneRadio id="retirado" value="#{criaAlteraPedidoPdaBean.pedido.retirado}" converter="javax.faces.Integer">
+						<p:selectOneRadio id="retirado" value="#{criaAlteraPedidoPdaBean.pedido.retirado}" converter="javax.faces.Integer" required ="true">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="negociacao" value="Negociação:" />
-						<p:selectOneRadio id="negociacao" value="#{criaAlteraPedidoPdaBean.pedido.negociacao}" converter="javax.faces.Integer">
+						<p:selectOneRadio id="negociacao" value="#{criaAlteraPedidoPdaBean.pedido.negociacao}" converter="javax.faces.Integer" required ="true">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="consignado" value="Consignado:" />
-						<p:selectOneRadio id="consignado" value="#{criaAlteraPedidoPdaBean.pedido.consignado}" converter="javax.faces.Integer">
+						<p:selectOneRadio id="consignado" value="#{criaAlteraPedidoPdaBean.pedido.consignado}" converter="javax.faces.Integer" required ="true">
 							<f:selectItem itemLabel="Sim" itemValue="1" />
 							<f:selectItem itemLabel="Não" itemValue="0" />
 						</p:selectOneRadio>
 
 						<p:outputLabel for="tipoDfe" value="Tipo DF-e:" />
-						<p:selectOneRadio id="tipoDfe" value="#{criaAlteraPedidoPdaBean.pedido.tipo_dfe}" converter="javax.faces.Integer">
+						<p:selectOneRadio id="tipoDfe" value="#{criaAlteraPedidoPdaBean.pedido.tipo_dfe}" converter="javax.faces.Integer" required ="true">
 							<f:selectItem itemLabel="DF-e" itemValue="1" />
 							<f:selectItem itemLabel="Outro" itemValue="0" />
 						</p:selectOneRadio>
@@ -83,16 +84,19 @@
 						</p:commandButton>
 
 					</h:panelGrid>
+					</h:form>
 				</div>
-				<h:form id="form2">
+				
+				
 				<div class="interno">
+				<h:form id="form2">
 					<h:panelGrid columns="3" cellpadding="5">
 
 
 						<p:selectOneMenu id="produto"
 							value="#{criaAlteraPedidoPdaBean.item.produto}"
 							style="width:100px" filter="true" filterMatchMode="startsWith"
-							label="produto">
+							label="produto" required ="true">
 							<f:selectItem itemLabel="Produtos" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.produtos}" 
 							var="produto" itemValue="#{produto}" itemLabel="#{produto.descricao}"  />
@@ -104,25 +108,28 @@
 						</p:commandButton>
 
 					</h:panelGrid>
+					</h:form>
 				</div>
-				</h:form>
+				
+				
 				
 				<div class="interno">
 				<h:form id ="frm3">
+				
 
 						<p:dataTable id="tabela2" var="itens" value="#{criaAlteraPedidoPdaBean.itensPedidoPda}" style="width:600px" border="1" cellspacing="0" cellpadding="2"
 						paginator="true" rows="5" paginatorPosition="bottom">
 						
-							<p:column headerText="Produto" style="width:25%">
+							<p:column headerText="Produto" style="width:15%">
 								<h:outputText value="#{itens.produto.descricao}" />
 							</p:column>
 
-							<p:column headerText="Quantidade" style="width:25%">
+							<p:column headerText="Quantidade" style="width:15%">
 								<h:outputText value="#{itens.quantidade}" />
 							</p:column>
 
-							<p:column headerText="valor Total" style="width:25%">
-								<h:outputText value="teste" />
+							<p:column headerText="valor Total" style="width:15%">
+								<h:outputText value="#{itens.valorTotal}" />
 							</p:column>
 
 							<p:column headerText="Remover" style="width:12%">
@@ -134,10 +141,10 @@
 							</p:column>
 						</p:dataTable>
 						</h:form>
+						
 				</div>
 				
+				
 			</div>
-		</h:form>
-
 	</ui:define>
 </ui:composition>
