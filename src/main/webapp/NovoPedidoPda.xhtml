@@ -19,11 +19,11 @@
 				<h:form id="frm">
 					<h:panelGrid columns="2" cellpadding="5">
 
-						<p:outputLabel value="Cliente:" />
+						<p:outputLabel value="Cliente:" for="Cliente" />
 						<p:selectOneMenu
 							value="#{criaAlteraPedidoPdaBean.pedido.cliente}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
-							label="Cliente:" required ="true">
+							label="Cliente" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientes}" 
 							var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
@@ -42,7 +42,7 @@
 						<p:selectOneMenu id="condicaoPagamento"
 							value="#{criaAlteraPedidoPdaBean.pedido.condicaoPagamento}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
-							label="condPG:" required ="true">
+							label="condicaoPagamento" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
 							var="condPG" itemValue="#{condPG}" itemLabel="#{condPG.nome}" />
