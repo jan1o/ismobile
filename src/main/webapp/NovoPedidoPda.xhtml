@@ -26,7 +26,7 @@
 							 label="Cliente" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.clientes}" 
-							var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
+							var="Cliente" itemValue="#{Cliente}" itemLabel="#{Cliente.nome}"/>
 						</p:selectOneMenu>
 
 
@@ -38,14 +38,14 @@
 							
 							</p:calendar>
 
-						<p:outputLabel value="Condição de Pagamento:" for="condicaoPagamento" />
-						<p:selectOneMenu id="condicaoPagamento"
+						<p:outputLabel value="Condição de Pagamento:" for="CondicaoPagamento" />
+						<p:selectOneMenu id="CondicaoPagamento"
 							value="#{criaAlteraPedidoPdaBean.pedido.condicaoPagamento}" dynamic="true"
 							style="width:165px" filter="true" filterMatchMode="startsWith"
-							label="condicaoPagamento" required ="true">
+							label="CondicaoPagamento" required ="true">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{criaAlteraPedidoPdaBean.condicoesPg}"
-							var="condPG" itemValue="#{condPG}" itemLabel="#{condPG.nome}" />
+							var="CondicaoPagamento" itemValue="#{CondicaoPagamento}" itemLabel="#{CondicaoPagamento.nome}" />
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação:" for="obs" />
@@ -78,9 +78,8 @@
 
 						<p:outputLabel />
 
-						<p:commandButton value="Salvar" title="Salvar" process="@this"
-							update="@none" action="#{criaAlteraPedidoPdaBean.Salvar}">
-
+						<p:commandButton value="Salvar" title="Salvar"
+							 action="#{criaAlteraPedidoPdaBean.Salvar}" >
 						</p:commandButton>
 
 					</h:panelGrid>
@@ -129,7 +128,7 @@
 							</p:column>
 
 							<p:column headerText="valor Total" style="width:15%">
-								<h:outputText value="#{itens.valorTotal}" />
+								<h:outputText value="teste" />
 							</p:column>
 
 							<p:column headerText="Remover" style="width:12%">

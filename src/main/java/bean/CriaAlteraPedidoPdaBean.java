@@ -51,12 +51,12 @@ public class CriaAlteraPedidoPdaBean implements Serializable {
 		clientes = pdb.listaClientes();
 		condicoesPg = pdb.listaCondicaoPagamento();
 		produtos = pdb.listaProduto();
-
+		
 
 	}
 
 	public void Salvar() throws Exception {
-
+		
 		pedido.setLista(itensPedidoPda);
 		pdb.cadastrarPedidoPda(pedido);
 
