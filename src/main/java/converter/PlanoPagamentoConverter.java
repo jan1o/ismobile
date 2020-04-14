@@ -15,27 +15,24 @@ import repository.ProdutoDAO;
 import util.JpaUtil;
 
 @FacesConverter(forClass = CondicaoPagamento.class)
-public class PlanoPagamentoConverter implements Converter, Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class PlanoPagamentoConverter implements Converter {
+	
 
 
 
 	//***** MÉTODO INACABADO, ESPERANDO ATUALIZAÇÂO DO DAO ***!!!!
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String codigo) {
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
 		CondicaoPagamento retorno = null;
 		EntityManager manager = JpaUtil.getEntityManager();
 
 		try {
-			if (codigo != null && !"".equals(codigo)) {
+			if (value != null && !"".equals(value)) {
 				//ClienteDAO clienteDao = new ClienteDAO(manager);
 				//retorno = clienteDao.porId(new Long(value));
 				PlanoPagamentoDAO dao = new PlanoPagamentoDAO(manager);
-				retorno = dao.listarPorId(Integer.parseInt(codigo));
+				retorno = dao.listarPorId(Integer.parseInt(value));
 			}
 			return retorno;
 		} finally {

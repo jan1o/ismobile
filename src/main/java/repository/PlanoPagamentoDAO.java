@@ -31,7 +31,7 @@ public class PlanoPagamentoDAO {
 	}
 	
 	public CondicaoPagamento listarPorId(int codigo) {
-		Query query = manager.createQuery("from PlanoPagamento p where p.codigo = :id ");
+		Query query = manager.createQuery("from CondicaoPagamento p where p.codigo = :id ");
 		query.setParameter("id", codigo);
 		CondicaoPagamento c = (CondicaoPagamento) query.getSingleResult();
 		return c;

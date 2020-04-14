@@ -67,7 +67,7 @@ public class PedidoPdaBusiness {
 		
 		//Usuario logado
 		Usuario usu = SessionContext.getInstance().getUsuarioLogado();
-		System.out.println(usu.getNome());		
+				
 		//DAO de usuario permissao para pegar e alterar o numero do pedido pda
 		UsuarioPermissaoDAO udao = new UsuarioPermissaoDAO(new Utilitarios().configuracaoPostgres());
 		Vendedor v = udao.getDadosVendedor(usu.getNome());
@@ -88,9 +88,11 @@ public class PedidoPdaBusiness {
 		}
 		
 		//Adicionar o novo pedido pda
-		System.out.println(pedido.getVendedor().getNome());
-		System.out.println(pedido.getLista().get(0).getVendedor().getNome());
+		System.out.println(pedido.getConsignado());
+		System.out.println(pedido.getObservacao());
+		
 		pdao.salvar(pedido);
+		//pdao.inserir(pedido);
 		
 		//Incrementar a sequencia_pedido_pda do vendedor
 		udao.updateSequenciaPedidoPda(v);

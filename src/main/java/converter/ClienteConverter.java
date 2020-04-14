@@ -18,25 +18,21 @@ import util.JpaUtil;
 import util.Utilitarios;
 
 @FacesConverter(forClass = Cliente.class)
-public class ClienteConverter implements Converter, Serializable {
+public class ClienteConverter implements Converter {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	//***** MÉTODO INACABADO, ESPERANDO ATUALIZAÇÂO DO DAO ***!!!!
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String codigo) {
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
 		Cliente retorno = null;
 		EntityManager manager = JpaUtil.getEntityManager();
 
 		try {
-			if (codigo != null && !"".equals(codigo)) {
+			if (value != null && !"".equals(value)) {
 				//ClienteDAO clienteDao = new ClienteDAO(manager);
 				ClienteDAO clienteDao = new ClienteDAO(manager);
-				retorno = clienteDao.listarPorId(Integer.parseInt(codigo));
+				retorno = clienteDao.listarPorId(Integer.parseInt(value));
 			}
 		} finally {
 			manager.close();
