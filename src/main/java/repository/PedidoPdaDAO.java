@@ -60,6 +60,7 @@ public class PedidoPdaDAO {
 	// Esse método serve tanto para inserir quanto para alterar os pedidoPda.
 	public void salvar(PedidoPda pedido) {
 		manager.getTransaction().begin();
+		System.out.println(pedido.getVendedor().getCodigo());
 		this.manager.merge(pedido);
 		manager.getTransaction().commit();
 

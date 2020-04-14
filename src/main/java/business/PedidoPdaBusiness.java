@@ -61,6 +61,7 @@ public class PedidoPdaBusiness {
 	
 	
 	public void cadastrarPedidoPda(PedidoPda pedido) throws Exception {
+		PedidoPda pedidoa = pedido;
 		//DAO de pedidoPda
 		EntityManager manager = JpaUtil.getEntityManager();
 		PedidoPdaDAO pdao = new PedidoPdaDAO(manager);
@@ -77,21 +78,18 @@ public class PedidoPdaBusiness {
 		VendedorDAO vdao = new VendedorDAO(manager2);
 		
 		//Setar numero do pedido pda e codigo do vendedor ao pedido e aos itens
-		pedido.setNumero(v.getSequencia_pedido_pda() + 1);
-		pedido.setVendedor(vdao.getVendedorPorId(v.getCodigo()));
-		
-		for(ItemPedidoPda i : pedido.getLista()) {
+		pedidoa.setNumero(v.getSequencia_pedido_pda() + 1);
+		pedidoa.setVendedor(vdao.getVendedorPorId(v.getCodigo()));
+		for(ItemPedidoPda i : pedidoa.getLista()) {
 			i.setNumero_pedido_pda(pedido.getNumero());
-			i.setVendedor(pedido.getVendedor());
+			i.setVendedor(pedidoa.getVendedor());
 			//ItemPedidoPdaPK pk = new ItemPedidoPdaPK(pedido.getNumero(), pedido.getVendedor().getCodigo());
 			//i.setPk(pk);
 		}
 		
 		//Adicionar o novo pedido pda
-		System.out.println(pedido.getConsignado());
-		System.out.println(pedido.getObservacao());
 		
-		pdao.salvar(pedido);
+		pdao.salvar(pedidoa);
 		//pdao.inserir(pedido);
 		
 		//Incrementar a sequencia_pedido_pda do vendedor
